@@ -10,219 +10,181 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Your custom color variables */
+    /* High-Converting Color Variables */
     :root {
       --color-bg: #f9fafb;
       --color-primary: #1f2937;
       --color-secondary: #4b5563;
       --color-accent: #2563eb;
-      --color-cta: #ff6459;
+      --color-cta: #10b981; /* Bright green for “Buy Now” urgency */
     }
 
-    /* Make sure Tailwind can use those variables */
-    .bg-bg        { background-color: var(--color-bg); }
-    .text-primary { color: var(--color-primary); }
-    .text-secondary { color: var(--color-secondary); }
-    .text-accent  { color: var(--color-accent); }
-    .bg-cta       { background-color: var(--color-cta); }
-    .hover:bg-cta/90:hover { background-color: var(--color-cta); opacity: 0.9; }
-    .border-accent { border-color: var(--color-accent); }
-    .focus:ring-accent:focus { ring-color: var(--color-accent); }
+    /* Utility Classes for Our Color Vars */
+    .bg-bg            { background-color: var(--color-bg); }
+    .text-primary     { color: var(--color-primary); }
+    .text-secondary   { color: var(--color-secondary); }
+    .text-accent      { color: var(--color-accent); }
+    .bg-cta           { background-color: var(--color-cta); }
+    .hover\:bg-cta\/90:hover { background-color: var(--color-cta); opacity: 0.9; }
+    .border-accent    { border-color: var(--color-accent); }
+    .focus\:ring-accent:focus { ring-color: var(--color-accent); }
   </style>
-  <title>RealtyBot – Your 24/7 Real-Estate Chatbot Assistant</title>
+  <title>RealtyBot DIY Bot Package – Embed & Automate Instantly</title>
 </head>
 <body class="bg-bg text-primary font-sans leading-relaxed">
 
   <!-- ============================================== -->
-  <!-- 1. NAVBAR (Sticky top, simple) -->
+  <!-- 1. NAVBAR (Sticky top) -->
   <!-- ============================================== -->
   <header class="bg-white shadow-sm fixed w-full z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <!-- Logo / Name -->
-      <a href="#" class="text-2xl font-bold text-primary">RealtyBot</a>
-      <!-- Main Nav (could be hidden on mobile) -->
+      <a href="#" class="text-2xl font-bold text-primary">RealtyBot DIY</a>
       <nav class="space-x-6 hidden md:flex">
         <a href="#features" class="text-secondary hover:text-primary transition">Features</a>
-        <a href="#testimonials" class="text-secondary hover:text-primary transition">Testimonials</a>
         <a href="#pricing" class="text-secondary hover:text-primary transition">Pricing</a>
+        <a href="#pipeline" class="text-secondary hover:text-primary transition">Pipeline</a>
         <a href="#faq" class="text-secondary hover:text-primary transition">FAQ</a>
         <a href="#contact" class="text-accent font-semibold">Contact</a>
       </nav>
-      <!-- CTA Button -->
       <div>
         <a
-          href="#demo"
+          href="#pricing"
           class="bg-cta hover:bg-cta/90 text-white font-semibold px-5 py-2 rounded-lg transition"
         >
-          Watch Demo
+          Buy Now
         </a>
       </div>
     </div>
   </header>
-
-  <!-- Spacer to account for fixed header -->
-  <div class="h-16"></div>
+  <div class="h-16"></div> <!-- Spacer for fixed header -->
 
 
   <!-- ============================================== -->
-  <!-- 2. HERO SECTION (Above The Fold) -->
+  <!-- 2. HERO SECTION -->
   <!-- ============================================== -->
-  <section
-    class="bg-bg pt-20 pb-16"
-    id="hero"
-  >
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <!-- Hero Headline -->
+  <section class="bg-bg pt-20 pb-16 text-center" id="hero">
+    <div class="max-w-4xl mx-auto px-4">
       <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-4">
-        Your 24/7 AI Chatbot for Real-Estate Success
+        DIY Your 24/7 Real-Estate Chatbot in Minutes
       </h1>
-      <!-- Hero Subheadline -->
       <p class="text-lg md:text-xl text-secondary mb-8">
-        Qualify leads, schedule showings, and answer FAQs—so you never miss an opportunity.
+        Get instant access to step-by-step videos: embed your Landbot widget, configure Airtable, and start capturing leads—no trial, no developer needed.
       </p>
-      <!-- Primary CTA Buttons -->
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a
-          href="#demo"
+          href="#pricing"
           class="bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
         >
-          Watch Demo
+          See Pricing & Buy
         </a>
         <a
-          href="#contact"
+          href="#pipeline"
           class="border-2 border-accent text-accent font-semibold px-6 py-3 rounded-lg hover:bg-accent/10 transition"
         >
-          Request a Quote
+          How It Works
         </a>
       </div>
-      <!-- Hero Secondary Line -->
       <p class="mt-6 text-sm text-secondary">
-        No setup fee • Cancel anytime • 24/7 support
+        Instant access • Detailed video guides • No monthly fees locked in
       </p>
     </div>
   </section>
 
 
   <!-- ============================================== -->
-  <!-- 3. “Why It Matters” / Pain Agitate Solve -->
+  <!-- 3. FEATURES GRID -->
   <!-- ============================================== -->
-  <section class="py-16 bg-white" id="why-it-matters">
-    <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-      <!-- Left side: text -->
-      <div>
-        <h2 class="text-3xl font-bold text-primary mb-4">
-          Stop Losing Leads—and Start Closing More Deals
-        </h2>
-        <p class="text-secondary mb-4">
-          As a real-estate agent, your time is your most valuable asset. But when prospects fill out your form or ask questions after hours, you can’t be there 24/7. That means cold leads, missed opportunities, and fewer commissions.
-        </p>
-        <p class="text-secondary mb-4">
-          RealtyBot tackles that head-on by providing an intelligent, always-on assistant that handles lead qualification, appointment scheduling, and neighborhood FAQs—so you can focus on closing, not chasing.
-        </p>
-        <ul class="space-y-3 mt-6">
-          <li class="flex items-start">
-            <svg class="w-6 h-6 text-cta flex-shrink-0 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-            <span class="text-secondary">
-              Never miss a lead—Respond instantly, any time of day.
-            </span>
-          </li>
-          <li class="flex items-start">
-            <svg class="w-6 h-6 text-cta flex-shrink-0 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-            <span class="text-secondary">
-              Automate showing schedules—clients book tours right from the chat.
-            </span>
-          </li>
-          <li class="flex items-start">
-            <svg class="w-6 h-6 text-cta flex-shrink-0 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-            <span class="text-secondary">
-              Provide 24/7 neighborhood FAQs—schools, taxes, comps, and more.
-            </span>
-          </li>
-        </ul>
-      </div>
-      <!-- Right side: Image/illustration -->
-      <div class="flex justify-center">
-        <!-- You could swap in any illustration or relevant photo here -->
-        <img
-          src="https://your‐cdn.com/realestate‐assistant‐illustration.png"
-          alt="Why RealtyBot Matters Illustration"
-          class="w-full h-auto rounded-lg shadow-lg"
-        />
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================== -->
-  <!-- 4. KEY FEATURES / BENEFITS GRID -->
-  <!-- ============================================== -->
-  <section class="py-16 bg-bg" id="features">
+  <section class="py-16 bg-white" id="features">
     <div class="max-w-6xl mx-auto px-4 text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
-        Core Features & Benefits
+        Core DIY Features & Benefits
       </h2>
       <p class="text-secondary mb-12 max-w-2xl mx-auto">
-        Everything you need to capture, qualify, and convert more leads—automatically.
+        Everything you need to self-install, configure, and automate your chatbot pipeline. No monthly lock-in, no free trial—just pay once and you’ll own all video guides forever.
       </p>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Feature 1 -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+        <div class="bg-bg p-6 rounded-xl shadow hover:shadow-md transition">
           <div class="flex items-center justify-center mb-4">
-            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-2a4 4 0 00-4-4H5m4 6l-2 2m0-2l2 2M15 7a4 4 0 014 4v9m-4-4l2 2m0-2l-2 2"></path></svg>
+            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">AI-Powered Lead Qualification</h3>
+          <h3 class="text-xl font-semibold text-primary mb-2">
+            Step-by-Step Videos
+          </h3>
           <p class="text-secondary">
-            Capture every prospect’s details—budget, property type, contact info—and qualify them instantly with 98% accuracy.
+            Watch in-depth tutorials on embedding your Landbot widget, setting up Airtable, and connecting to any CRM. Follow along at your own pace.
           </p>
         </div>
         <!-- Feature 2 -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+        <div class="bg-bg p-6 rounded-xl shadow hover:shadow-md transition">
           <div class="flex items-center justify-center mb-4">
-            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8h18M3 12h18M3 16h18"></path></svg>
+            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 8l7-5 7 5m-7 2v9"></path><path d="M5 21h14"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">Automated Showing Scheduler</h3>
+          <h3 class="text-xl font-semibold text-primary mb-2">
+            Airtable Backend Setup
+          </h3>
           <p class="text-secondary">
-            Let clients book tours directly through chat—synchronize with Google Calendar or Office 365. Setup takes under 2 minutes.
+            Learn how to create your Airtable base, configure tables/fields, and store every lead. Our video shows you exactly which columns and automations to set.
           </p>
         </div>
         <!-- Feature 3 -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+        <div class="bg-bg p-6 rounded-xl shadow hover:shadow-md transition">
           <div class="flex items-center justify-center mb-4">
-            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 8h10M7 12h4m1 8V4m0 0L5 8m8-4l8 8"></path></svg>
+            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8 9l3 3-3 3"></path><path d="M13 9l3 3-3 3"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">24/7 Chat & Neighborhood FAQs</h3>
+          <h3 class="text-xl font-semibold text-primary mb-2">
+            Embed Anywhere
+          </h3>
           <p class="text-secondary">
-            Answer questions on schools, taxes, comps, and local amenities—round-the-clock. Increase trust by delivering instant local expertise.
+            Use our snippet to drop the Landbot widget on any website—WordPress, Webflow, Wix, or pure HTML. Video walks you through every CMS.
           </p>
         </div>
         <!-- Feature 4 -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+        <div class="bg-bg p-6 rounded-xl shadow hover:shadow-md transition">
           <div class="flex items-center justify-center mb-4">
-            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 15a4 4 0 008 0m0 0c0-2.21 1.79-4 4-4s4 1.79 4 4m0 0a4 4 0 008 0"></path></svg>
+            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 17v-2a4 4 0 00-4-4H5"></path><path d="M15 7a4 4 0 014 4v5"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">CRM & Calendar Integration</h3>
+          <h3 class="text-xl font-semibold text-primary mb-2">
+            CRM Integration Guide
+          </h3>
           <p class="text-secondary">
-            Sync qualified leads automatically to Zillow, Redfin, Salesforce—or any custom CRM. All appointments flow into your calendar instantly.
+            We show you how to push Airtable leads into any CRM (e.g. Zoho, HubSpot, Salesforce) via Zapier or custom API. You choose which flow suits you.
           </p>
         </div>
         <!-- Feature 5 -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+        <div class="bg-bg p-6 rounded-xl shadow hover:shadow-md transition">
           <div class="flex items-center justify-center mb-4">
-            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 11V7a4 4 0 018 0v4m-4-4v4m-4 2a4 4 0 01-4 4H4v-4h4zm2 4v-4"></path></svg>
+            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 20l9-5-9-5-9 5 9 5z"></path><path d="M12 12l9-5-9-5-9 5 9 5z"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">Analytics Dashboard</h3>
+          <h3 class="text-xl font-semibold text-primary mb-2">
+            Calendly Integration
+          </h3>
           <p class="text-secondary">
-            Get real-time insights on chat volume, lead conversion rates, and response times. Make data-driven decisions to optimize your ROI.
+            Step-by-step on how to add Calendly so prospects can book calls directly through your chat. No developer work—just copy, paste, and go live.
           </p>
         </div>
         <!-- Feature 6 -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+        <div class="bg-bg p-6 rounded-xl shadow hover:shadow-md transition">
           <div class="flex items-center justify-center mb-4">
-            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-2a4 4 0 00-4-4H5m4 6l-2 2m0-2l2 2M15 7a4 4 0 014 4v9m-4-4l2 2m0-2l-2 2"></path></svg>
+            <svg class="w-12 h-12 text-cta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 17a3 3 0 01-3-3"></path><path d="M5 6a3 3 0 00-3 3v3a3 3 0 003 3"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">Mobile-Friendly Widget</h3>
+          <h3 class="text-xl font-semibold text-primary mb-2">
+            Instant Hot-Lead Alerts
+          </h3>
           <p class="text-secondary">
-            Your clients get a seamless, responsive chat experience on any device—no app installation needed. Perfect for on-the-go homebuyers.
+            Configure Airtable automations to send SMS or email notifications the moment a qualified lead comes in. Never miss a hot lead again.
           </p>
         </div>
       </div>
@@ -231,268 +193,264 @@
 
 
   <!-- ============================================== -->
-  <!-- 5. TRUST ELEMENTS & SOCIAL PROOF -->
+  <!-- 4. DIY PIPELINE (How It Works) -->
   <!-- ============================================== -->
-  <section class="py-16 bg-white" id="testimonials">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
-        Trusted by Top Agents & Brokerages
-      </h2>
-      <!-- Logos of brokerages/clients -->
-      <div class="flex flex-wrap justify-center items-center gap-8 mb-12">
-        <!-- Replace `src` with real logo URLs -->
-        <img src="https://via.placeholder.com/120x40?text=Brokerage+1" alt="Brokerage 1" class="h-10 object-contain" />
-        <img src="https://via.placeholder.com/120x40?text=Brokerage+2" alt="Brokerage 2" class="h-10 object-contain" />
-        <img src="https://via.placeholder.com/120x40?text=Brokerage+3" alt="Brokerage 3" class="h-10 object-contain" />
-        <img src="https://via.placeholder.com/120x40?text=Brokerage+4" alt="Brokerage 4" class="h-10 object-contain" />
-        <img src="https://via.placeholder.com/120x40?text=Brokerage+5" alt="Brokerage 5" class="h-10 object-contain" />
-      </div>
-
-      <!-- Individual testimonials -->
-      <div class="grid md:grid-cols-2 gap-10">
-        <!-- Testimonial 1 -->
-        <div class="bg-bg p-6 rounded-xl shadow-lg text-left">
-          <div class="flex items-center mb-4">
-            <img
-              src="https://via.placeholder.com/48?text=A"
-              alt="Agent Jane"
-              class="w-12 h-12 rounded-full object-cover mr-4"
-            />
-            <div>
-              <p class="font-semibold text-primary">Jane Doe</p>
-              <p class="text-sm text-secondary">Top Agent, XYZ Realty</p>
-            </div>
-          </div>
-          <p class="text-secondary">
-            “RealtyBot has changed everything. Since installing the chat widget, I’ve seen a 30% increase in quality leads. And because it’s 24/7, I capture prospects even after hours. My response time is now under 2 minutes—my clients love it!”
-          </p>
-        </div>
-        <!-- Testimonial 2 -->
-        <div class="bg-bg p-6 rounded-xl shadow-lg text-left">
-          <div class="flex items-center mb-4">
-            <img
-              src="https://via.placeholder.com/48?text=B"
-              alt="Agent Bob"
-              class="w-12 h-12 rounded-full object-cover mr-4"
-            />
-            <div>
-              <p class="font-semibold text-primary">Bob Smith</p>
-              <p class="text-sm text-secondary">Realtor, ABC Realty</p>
-            </div>
-          </div>
-          <p class="text-secondary">
-            “In just 60 days, I closed 20 more deals with RealtyBot’s automated scheduler. My calendar is always filled with qualified appointments, and the analytics dashboard shows real-time performance. It’s like having a virtual assistant—without the payroll.”
-          </p>
-        </div>
-      </div>
-
-      <!-- Social proof stat -->
-      <div class="mt-12 text-center">
-        <p class="text-lg text-secondary">
-          Over <span class="font-bold text-primary">1,500+</span> agents trust RealtyBot to capture their leads—
-          <span class="font-bold text-accent">98% accuracy</span> in qualification.
-        </p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================== -->
-  <!-- 6. “How It Works” / 3-Step Flow -->
-  <!-- ============================================== -->
-  <section class="py-16 bg-bg" id="how-it-works">
+  <section class="py-16 bg-bg" id="pipeline">
     <div class="max-w-5xl mx-auto px-4 text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
-        How RealtyBot Works
+        Your DIY Pipeline in 4 Easy Steps
       </h2>
       <p class="text-secondary mb-12">
-        Three simple steps to a fully automated lead-capturing machine.
+        We give you everything—video tutorials, sample files, and exact instructions—so you can set up your own chatbot, Airtable backend, and integrations, all in under an hour.
       </p>
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-4 gap-8">
         <!-- Step 1 -->
         <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
           <div class="bg-cta rounded-full w-16 h-16 flex items-center justify-center mb-4">
             <span class="text-white font-bold text-2xl">1</span>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">Install the Widget</h3>
-          <p class="text-secondary text-center">
-            Copy-paste our JavaScript snippet into your website. No technical skills required—takes under 2 minutes.
+          <h3 class="text-xl font-semibold text-primary mb-2">Embed Your Landbot</h3>
+          <p class="text-secondary text-center mb-2">
+            Follow our video to get your custom Landbot widget link. Copy & paste the snippet into your site footer—WordPress, Wix, or raw HTML.
           </p>
+          <a
+            href="#"
+            class="mt-auto text-accent font-semibold hover:underline"
+          >
+            Watch Example
+          </a>
         </div>
         <!-- Step 2 -->
         <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
           <div class="bg-cta rounded-full w-16 h-16 flex items-center justify-center mb-4">
             <span class="text-white font-bold text-2xl">2</span>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">Customize Questions</h3>
-          <p class="text-secondary text-center">
-            Choose which buyer or seller questions your chatbot should ask—budget, property type, phone, email. All in our intuitive dashboard.
+          <h3 class="text-xl font-semibold text-primary mb-2">Configure Airtable</h3>
+          <p class="text-secondary text-center mb-2">
+            Our tutorial shows exactly how to set up your Airtable base (fields, views, automations). Use our starter template or build from scratch.
           </p>
+          <a
+            href="#"
+            class="mt-auto text-accent font-semibold hover:underline"
+          >
+            View Template
+          </a>
         </div>
         <!-- Step 3 -->
         <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
           <div class="bg-cta rounded-full w-16 h-16 flex items-center justify-center mb-4">
             <span class="text-white font-bold text-2xl">3</span>
           </div>
-          <h3 class="text-xl font-semibold text-primary mb-2">Capture Hot Leads</h3>
-          <p class="text-secondary text-center">
-            As soon as prospects interact, you get their info, booked showings, and prioritized follow-ups—24/7.
+          <h3 class="text-xl font-semibold text-primary mb-2">Add Calendly</h3>
+          <p class="text-secondary text-center mb-2">
+            If you choose Tier 2 or Tier 3, we show you how to embed Calendly so visitors can book calls directly.  
+          </p>
+          <a
+            href="#"
+            class="mt-auto text-accent font-semibold hover:underline"
+          >
+            Setup Guide
+          </a>
+        </div>
+        <!-- Step 4 -->
+        <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
+          <div class="bg-cta rounded-full w-16 h-16 flex items-center justify-center mb-4">
+            <span class="text-white font-bold text-2xl">4</span>
+          </div>
+          <h3 class="text-xl font-semibold text-primary mb-2">CRM Integration</h3>
+          <p class="text-secondary text-center mb-2">
+            In Tier 3, we walk you through connecting Airtable to your CRM via Zapier or direct API—HubSpot, Zoho, Salesforce, or any custom setup.
+          </p>
+          <a
+            href="#"
+            class="mt-auto text-accent font-semibold hover:underline"
+          >
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================== -->
+  <!-- 5. PRICING TIERS -->
+  <!-- ============================================== -->
+  <section class="py-16 bg-white" id="pricing">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+        Choose Your DIY Package
+      </h2>
+      <p class="text-secondary mb-8">
+        One-time payment—keep all video guides forever. Add optional support or schedule a live call under the same structure.
+      </p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Tier 1: Basic ($49.99) -->
+        <div class="bg-bg p-6 rounded-xl shadow-lg flex flex-col">
+          <h3 class="text-2xl font-bold text-primary mb-4">Tier 1<br /><span class="text-3xl">$49.99</span></h3>
+          <p class="text-secondary mb-6">
+            Includes ALL video tutorials for embedding your bot and setting up Airtable—no Calendly, no CRM.
+          </p>
+          <ul class="text-secondary mb-6 space-y-2 text-left">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
+              Landbot Embed + Setup Video
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
+              Airtable Base Configuration Video
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
+              Instant Hot-Lead Alert Setup
+            </li>
+          </ul>
+          <a
+            href="#"
+            class="mt-auto bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
+          >
+            Buy Tier 1
+          </a>
+        </div>
+
+        <!-- Tier 2: Pro ($99.99) -->
+        <div class="bg-bg p-6 rounded-xl shadow-lg flex flex-col border-2 border-cta">
+          <h3 class="text-2xl font-bold text-primary mb-4">Tier 2<br /><span class="text-3xl">$99.99</span></h3>
+          <p class="text-secondary mb-6">
+            Everything in Tier 1, plus full Calendly integration—let prospects book calls automatically through chat.
+          </p>
+          <ul class="text-secondary mb-6 space-y-2 text-left">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
+              All Tier 1 Videos
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
+              Calendly Embed & Setup Guide
+            </li>
+          </ul>
+          <a
+            href="#"
+            class="mt-auto bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
+          >
+            Buy Tier 2
+          </a>
+        </div>
+
+        <!-- Tier 3: Ultimate ($149.99) -->
+        <div class="bg-bg p-6 rounded-xl shadow-lg flex flex-col">
+          <h3 class="text-2xl font-bold text-primary mb-4">Tier 3<br /><span class="text-3xl">$149.99</span></h3>
+          <p class="text-secondary mb-6">
+            Everything in Tier 2, plus full CRM integration guide—sync leads to HubSpot, Zoho, Salesforce, or any custom CRM.
+          </p>
+          <ul class="text-secondary mb-6 space-y-2 text-left">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
+              All Tier 2 Videos
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
+              CRM Integration via Zapier/API
+            </li>
+          </ul>
+          <a
+            href="#"
+            class="mt-auto bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
+          >
+            Buy Tier 3
+          </a>
+        </div>
+      </div>
+
+      <!-- Support Add-On -->
+      <div class="mt-12">
+        <h3 class="text-xl font-semibold text-primary mb-4">
+          Add 24/7 Support to Any Tier: + <span class="text-3xl">$49.99</span>
+        </h3>
+        <p class="text-secondary mb-4">
+          Unlimited email and chat support for 30 days—get help troubleshooting or customizing your setup.
+        </p>
+        <a
+          href="#"
+          class="bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
+        >
+          Add Support to My Order
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================== -->
+  <!-- 6. SOCIAL PROOF & TRUST ELEMENTS -->
+  <!-- ============================================== -->
+  <section class="py-16 bg-bg" id="social-proof">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+        Join Over 1,000 DIY Agents Who’ve Automated Their Funnel
+      </h2>
+      <div class="flex flex-wrap justify-center items-center gap-8 mb-12">
+        <img src="https://via.placeholder.com/120x40?text=Agent+Logo+1" alt="Agent Logo 1" class="h-10 object-contain" />
+        <img src="https://via.placeholder.com/120x40?text=Agent+Logo+2" alt="Agent Logo 2" class="h-10 object-contain" />
+        <img src="https://via.placeholder.com/120x40?text=Agent+Logo+3" alt="Agent Logo 3" class="h-10 object-contain" />
+        <img src="https://via.placeholder.com/120x40?text=Agent+Logo+4" alt="Agent Logo 4" class="h-10 object-contain" />
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Testimonial 1 -->
+        <div class="bg-white p-6 rounded-xl shadow-lg text-left">
+          <div class="flex items-center mb-4">
+            <img
+              src="https://via.placeholder.com/48?text=J"
+              alt="Jane Doe"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <p class="font-semibold text-primary">Jane Doe</p>
+              <p class="text-sm text-secondary">Solo Agent, ABC Realty</p>
+            </div>
+          </div>
+          <p class="text-secondary">
+            “I bought the Tier 1 package for $49.99 and had my chatbot live in under 30 minutes. The Airtable setup video was clear, and I now capture leads even when I’m offline. Best $50 I’ve ever spent!”
+          </p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="bg-white p-6 rounded-xl shadow-lg text-left">
+          <div class="flex items-center mb-4">
+            <img
+              src="https://via.placeholder.com/48?text=B"
+              alt="Bob Smith"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <p class="font-semibold text-primary">Bob Smith</p>
+              <p class="text-sm text-secondary">Team Lead, XYZ Brokerage</p>
+            </div>
+          </div>
+          <p class="text-secondary">
+            “We went straight to Tier 3: we needed CRM integration with Salesforce. The video walked us through every Zapier step—now leads flow automatically into our pipeline. ROI was instant.”
           </p>
         </div>
       </div>
-    </div>
-  </section>
 
-
-  <!-- ============================================== -->
-  <!-- 7. DEMO VIDEO SECTION -->
-  <!-- ============================================== -->
-  <section class="py-16 bg-white" id="demo">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
-        See RealtyBot in Action
-      </h2>
-      <p class="text-secondary mb-8">
-        Watch this quick 2-minute walkthrough to see how your new 24/7 assistant captures and qualifies leads instantly.
-      </p>
-      <!-- Responsive YouTube iframe -->
-      <div class="aspect-w-16 aspect-h-9 mb-8">
-        <iframe
-          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-          title="RealtyBot Demo"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          class="w-full h-full rounded-lg shadow-lg"
-        ></iframe>
-      </div>
-      <!-- Secondary CTA: DIY or Book a Call -->
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a
-          href="#pricing"
-          class="bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
-        >
-          I’d Like to DIY (Self-Install)
-        </a>
-        <a
-          href="https://calendly.com/your-agent/30min"
-          target="_blank"
-          class="border-2 border-accent text-accent font-semibold px-6 py-3 rounded-lg hover:bg-accent/10 transition"
-        >
-          Book a Call (Free 30-Min Demo)
-        </a>
+      <div class="mt-12 text-center">
+        <p class="text-lg text-secondary">
+          Over <span class="font-bold text-primary">1,000</span> agents have DIY-installed RealtyBot—average conversion boost of <span class="font-bold text-accent">35%</span>.
+        </p>
       </div>
     </div>
   </section>
 
 
   <!-- ============================================== -->
-  <!-- 8. PRICING / REQUEST A QUOTE -->
-  <!-- ============================================== -->
-  <section class="py-16 bg-bg" id="pricing">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
-        Choose Your Plan
-      </h2>
-      <p class="text-secondary mb-8">
-        Simple, transparent pricing. No hidden fees, no long-term contracts.
-      </p>
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Starter Plan -->
-        <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
-          <h3 class="text-2xl font-bold text-primary mb-4">Starter</h3>
-          <p class="text-secondary mb-6">Perfect for solo agents just getting started.</p>
-          <p class="text-4xl font-extrabold text-primary mb-6">$49<span class="text-lg text-secondary">/mo</span></p>
-          <ul class="text-secondary mb-6 space-y-2 text-left">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              AI Lead Qualification
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              Showing Scheduler
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              24/7 Chat & FAQs
-            </li>
-          </ul>
-          <a
-            href="https://calendly.com/your-agent/30min"
-            target="_blank"
-            class="mt-auto bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
-          >
-            Start Free Trial
-          </a>
-        </div>
-        <!-- Pro Plan -->
-        <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col border-2 border-cta">
-          <h3 class="text-2xl font-bold text-primary mb-4">Pro</h3>
-          <p class="text-secondary mb-6">For growing teams and brokerages.</p>
-          <p class="text-4xl font-extrabold text-primary mb-6">$99<span class="text-lg text-secondary">/mo</span></p>
-          <ul class="text-secondary mb-6 space-y-2 text-left">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              Everything in Starter
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              CRM Integrations (Zillow, Salesforce, etc.)
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              Advanced Analytics Dashboard
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              Unlimited Agent Seats & Chat Transcripts
-            </li>
-          </ul>
-          <a
-            href="https://calendly.com/your-agent/30min"
-            target="_blank"
-            class="mt-auto bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
-          >
-            Start Free Trial
-          </a>
-        </div>
-        <!-- Enterprise Plan -->
-        <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
-          <h3 class="text-2xl font-bold text-primary mb-4">Enterprise</h3>
-          <p class="text-secondary mb-6">Custom solutions for large brokerages.</p>
-          <p class="text-4xl font-extrabold text-primary mb-6">Custom<span class="text-lg text-secondary"></span></p>
-          <ul class="text-secondary mb-6 space-y-2 text-left">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              Everything in Pro
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              Dedicated Onboarding & 24/7 Support
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              White‐Label & API Access
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-cta flex-shrink-0 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z"/></svg>
-              SLA  & Priority Feature Requests
-            </li>
-          </ul>
-          <a
-            href="#contact"
-            class="mt-auto bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-3 rounded-lg transition"
-          >
-            Request a Quote
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================== -->
-  <!-- 9. FAQ / OBJECTIONS -->
+  <!-- 7. FAQ SECTION -->
   <!-- ============================================== -->
   <section class="py-16 bg-white" id="faq">
     <div class="max-w-4xl mx-auto px-4">
@@ -500,40 +458,40 @@
         Frequently Asked Questions
       </h2>
       <div class="space-y-6">
-        <!-- FAQ Item 1 -->
+        <!-- FAQ 1 -->
         <details class="bg-bg p-6 rounded-lg shadow-lg cursor-pointer">
           <summary class="font-semibold text-primary text-lg">
-            Do I need coding skills to install?
+            Why isn’t there a free trial?
           </summary>
           <p class="mt-3 text-secondary">
-            Absolutely not. RealtyBot provides a tiny JavaScript snippet that you simply copy & paste into your website footer. If you use WordPress, Wix, or Squarespace, you can add the code in a custom HTML block. It takes under 2 minutes.
+            We provide all video guides upfront so you can own the entire pipeline forever—no monthly trap and no hidden fees. Once you buy, you get immediate access to every tutorial and template.
           </p>
         </details>
-        <!-- FAQ Item 2 -->
+        <!-- FAQ 2 -->
         <details class="bg-bg p-6 rounded-lg shadow-lg cursor-pointer">
           <summary class="font-semibold text-primary text-lg">
-            Is there a free trial or a money-back guarantee?
+            What if I get stuck—how do I get help?
           </summary>
           <p class="mt-3 text-secondary">
-            Yes—every new account gets a 14-day free trial with full access to all features. If you’re not 100% satisfied within 30 days, we offer a no-questions-asked, 100% money-back guarantee.
+            Every purchase includes one month of free community support via our private Slack channel. You can also add 24/7 personalized support for $49.99 at checkout.
           </p>
         </details>
-        <!-- FAQ Item 3 -->
+        <!-- FAQ 3 -->
         <details class="bg-bg p-6 rounded-lg shadow-lg cursor-pointer">
           <summary class="font-semibold text-primary text-lg">
-            How secure is my data?
+            How long do I have access to the videos?
           </summary>
           <p class="mt-3 text-secondary">
-            We encrypt all chat transcripts and lead data in transit (TLS 1.2+) and at rest (AES-256). Your data is never shared with third parties. We are fully GDPR and CCPA compliant.
+            Lifetime access—watch whenever you need. We host the videos on our private Vimeo channel, so you can revisit them anytime you change or upgrade your setup.
           </p>
         </details>
-        <!-- FAQ Item 4 -->
+        <!-- FAQ 4 -->
         <details class="bg-bg p-6 rounded-lg shadow-lg cursor-pointer">
           <summary class="font-semibold text-primary text-lg">
-            What if I already use a different lead-capture form?
+            Can I upgrade from Tier 1 to Tier 2 or 3 later?
           </summary>
           <p class="mt-3 text-secondary">
-            No problem—you can run RealtyBot in parallel. Our widget captures the same info (name, email, phone, budget) but does it conversationally, which dramatically increases conversion. You can also embed our form behind a “Get Demo” button.
+            Yes—go to your account dashboard and click “Upgrade Package.” You’ll only pay the difference between tiers. All previously purchased content remains available.
           </p>
         </details>
       </div>
@@ -542,45 +500,53 @@
 
 
   <!-- ============================================== -->
-  <!-- 10. FINAL CTA (“Still Unsure?”) -->
+  <!-- 8. FINAL CTA (“Impulse Buy” Section) -->
   <!-- ============================================== -->
   <section class="py-16 bg-bg text-center">
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="text-3xl font-bold text-primary mb-4">
-        Ready to Capture Every Lead, 24/7?
+        Ready to DIY Your 24/7 Chatbot & Capture Leads Today?
       </h2>
       <p class="text-secondary mb-8">
-        Join over 1,500 agents who trust RealtyBot to automate their lead flow and close more deals.
+        No monthly locks, no developer needed—just $49.99 to start. Upgrade whenever you want.
       </p>
-      <div class="flex justify-center gap-4">
+      <div class="flex justify-center gap-4 flex-wrap">
         <a
           href="#pricing"
           class="bg-cta hover:bg-cta/90 text-white font-semibold px-6 py-3 rounded-lg transition"
         >
-          Get Started Now
+          Buy Tier 1 – $49.99
         </a>
         <a
-          href="https://calendly.com/your-agent/30min"
-          target="_blank"
+          href="#pricing"
+          class="bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-3 rounded-lg transition"
+        >
+          Buy Tier 2 – $99.99
+        </a>
+        <a
+          href="#pricing"
           class="border-2 border-accent text-accent font-semibold px-6 py-3 rounded-lg hover:bg-accent/10 transition"
         >
-          Book a Free Demo Call
+          Buy Tier 3 – $149.99
         </a>
       </div>
+      <p class="mt-6 text-sm text-secondary italic">
+        Everything you need to DIY—detailed videos, starter Airtable base, Calendly & CRM guides.
+      </p>
     </div>
   </section>
 
 
   <!-- ============================================== -->
-  <!-- 11. SCREENSHOT OF THE WIDGET (for visual proof) -->
+  <!-- 9. WIDGET SCREENSHOT PREVIEW -->
   <!-- ============================================== -->
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-3xl font-bold text-primary mb-6">
-        Take a Peek at Your New Chat Widget
+        See Your Landbot Chat Widget in Action
       </h2>
       <p class="text-secondary mb-8">
-        Here’s exactly how RealtyBot will appear on your site—clean, modern, and designed to maximize conversions.
+        Here’s how the embedded Landbot widget will look on your site—fully branded and ready for 24/7 lead capture.
       </p>
       <img
         src="/assets/widget-screenshot.png"
@@ -588,22 +554,45 @@
         class="mx-auto rounded-lg shadow-lg w-full max-w-lg"
       />
       <p class="mt-4 text-sm text-secondary italic">
-        (Your own branding and colors can be applied—this is just an example.)
+        Replace this with your actual screenshot once you embed.
       </p>
     </div>
   </section>
 
 
   <!-- ============================================== -->
-  <!-- 12. FOOTER (Contact, Privacy Policy, Social) -->
+  <!-- 10. CONTACT / BOOK A CALL -->
+  <!-- ============================================== -->
+  <section class="py-16 bg-bg" id="contact">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-primary mb-4">Need a Live Walkthrough?</h2>
+      <p class="text-secondary mb-8">
+        If you prefer a one-on-one Zoom call, click below to schedule a free 30-minute demo. We’ll answer any questions and help you finalize your setup.
+      </p>
+      <a
+        href="https://calendly.com/your-agent/30min"
+        target="_blank"
+        class="bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-3 rounded-lg transition"
+      >
+        Book a Free 30-Min Demo Call
+      </a>
+      <p class="mt-6 text-sm text-secondary">
+        Same pricing rules apply—just pick your Tier first, then schedule.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================== -->
+  <!-- 11. FOOTER (Contact, Privacy, Social) -->
   <!-- ============================================== -->
   <footer class="bg-secondary text-white">
     <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-10">
       <!-- Column 1: About & Quick Links -->
       <div>
-        <h3 class="font-bold text-lg mb-4">RealtyBot</h3>
+        <h3 class="font-bold text-lg mb-4">RealtyBot DIY</h3>
         <p class="text-sm mb-6">
-          Automate your real-estate lead capture with an AI assistant—qualify, schedule, and convert more, 24/7.
+          Empowering agents to self-install a 24/7 chat funnel—embed, automate, convert. No monthly lock-in, pay once, own forever.
         </p>
         <ul class="space-y-2">
           <li>
@@ -620,85 +609,94 @@
       <!-- Column 2: Contact & Social -->
       <div>
         <h3 class="font-bold text-lg mb-4">Contact Us</h3>
-        <p class="text-sm mb-2">Email: <a href="mailto:support@realtybot.ai" class="underline">support@realtybot.ai</a></p>
-        <p class="text-sm mb-6">Phone: <a href="tel:+1234567890" class="underline">+1 (234) 567-890</a></p>
+        <p class="text-sm mb-2">
+          Email: <a href="mailto:support@realtybot.ai" class="underline">support@realtybot.ai</a>
+        </p>
+        <p class="text-sm mb-6">
+          Phone: <a href="tel:+1234567890" class="underline">+1 (234) 567-890</a>
+        </p>
         <h3 class="font-bold text-lg mb-4">Follow Us</h3>
         <div class="flex items-center space-x-4">
           <a href="https://twitter.com/realtybot" target="_blank" class="hover:opacity-80">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 19c11 0 17-9 17-17.2 0-.3 0-.7 0-1.1A12.2 12.2 0 0028 0c-1 .4-2 .7-3 .8a6.4 6.4 0 002.8-3.6 12.8 12.8 0 01-4.1 1.6A6.4 6.4 0 0020 0a6.4 6.4 0 00-6.3 7.6A18.2 18.2 0 010 1.8a6.4 6.4 0 001.9 8.6 6.2 6.2 0 01-2.9-.8v.1a6.4 6.4 0 005.1 6.2 6.4 6.4 0 01-2.8.1 6.4 6.4 0 006 4.4A12.8 12.8 0 010 20.5 18.2 18.2 0 009 23c11 0 17-9 17-17.2 0-.3 0-.7 0-1a12.3 12.3 0 003-3.2 12.6 12.6 0 01-3.5 1A6.4 6.4 0 0028 0a12.8 12.8 0 01-3.5.9 6.4 6.4 0 002.8-3.6 12.8 12.8 0 01-4.1 1.6 6.4 6.4 0 00-10.9 5.8 18.2 18.2 0 01-13.2-6.7 6.4 6.4 0 00-1.7 8.6 6.2 6.2 0 01-2.9-.8A6.4 6.4 0 002.8 9v.1a6.4 6.4 0 005.1 6.2 6.4 6.4 0 01-2.8.1 6.4 6.4 0 006 4.4A12.8 12.8 0 010 20.5 18.2 18.2 0 009 23" /></svg>
+            <!-- Twitter Icon -->
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22 5.924c-.816.36-1.693.603-2.613.713a4.57 4.57 0 001.997-2.517 9.063 9.063 0 01-2.885 1.1 4.522 4.522 0 00-7.713 4.11 12.83 12.83 0 01-9.32-4.73 4.51 4.51 0 001.399 6.04 4.496 4.496 0 01-2.05-.566v.056a4.523 4.523 0 003.627 4.428 4.53 4.53 0 01-2.043.078 4.525 4.525 0 004.224 3.14 9.06 9.06 0 01-5.61 1.93 9.2 9.2 0 01-1.077-.063 12.794 12.794 0 006.94 2.03c8.33 0 12.887-6.905 12.887-12.887 0-.196-.004-.391-.013-.585a9.224 9.224 0 002.275-2.353l-.004-.003z"/>
+            </svg>
           </a>
           <a href="https://www.linkedin.com/company/realtybot" target="_blank" class="hover:opacity-80">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.001 5.001A2.5 2.5 0 014.98 3.5zM2 8.998h6v14H2v-14zm18.015 0h-5.999v2.1h.085c.835-1.585 2.874-3.26 5.917-3.26 6.322 0 7.48 4.146 7.48 9.53v10.63h-6V15.92c0-2.115-.04-4.826-2.94-4.826-2.945 0-3.394 2.29-3.394 4.65v10.24h-6v-14h5.769v1.93h.082c.8-1.505 2.755-3.26 5.733-3.26 6.135 0 7.269 4.138 7.269 9.522v10.61h-6v-10.33c0-2.33-.043-4.83-2.933-4.83-2.945 0-3.393 2.29-3.393 4.65v10.24h-6v-14h6v1.7h.088c.799-1.506 2.754-3.26 5.732-3.26 6.136 0 7.27 4.138 7.27 9.522v10.61h-6v-10.33c0-2.33-.044-4.83-2.934-4.83-2.945 0-3.393 2.29-3.393 4.65v10.24z"/></svg>
+            <!-- LinkedIn Icon -->
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4.98 3.5c1.381 0 2.48 1.12 2.48 2.48a2.48 2.48 0 10-4.961 0c0-1.36 1.099-2.48 2.48-2.48zm.02 4.998h-6v14h6v-14zm2.53 0h-6v14h6v-14zm1.5 2h.02a2 2 0 012-2h.02a2 2 0 012 2v6.5a2 2 0 01-2 2h-.02a2 2 0 01-2-2v-6.5zm-.02-2v6.5h4v-6.5h-4z"/>
+            </svg>
           </a>
           <a href="https://facebook.com/realtybot" target="_blank" class="hover:opacity-80">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12.073C22 6.48 17.523 2 11.933 2 6.343 2 1.865 6.48 1.865 12.073c0 4.928 3.74 9.012 8.634 9.623v-6.8H7.897v-2.823h2.602v-1.787c0-2.574 1.553-3.988 3.833-3.988 1.106 0 2.026.082 2.298.117v2.665h-1.577c-1.235 0-1.652.739-1.652 1.49v1.803h2.8l-.365 2.823h-2.435v6.8c4.895-.611 8.634-4.696 8.634-9.623z"/></svg>
+            <!-- Facebook Icon -->
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22 12.073C22 6.48 17.523 2 11.933 2 6.343 2 1.865 6.48 1.865 12.073c0 4.928 3.74 9.012 8.634 9.623v-6.8H7.897v-2.823h2.602v-1.787c0-2.574 1.553-3.988 3.833-3.988 1.106 0 2.026.082 2.298.117v2.665h-1.577c-1.235 0-1.652.739-1.652 1.49v1.803h2.8l-.365 2.823h-2.435v6.8c4.895-.611 8.634-4.696 8.634-9.623z"/>
+            </svg>
           </a>
         </div>
       </div>
-      <!-- Column 3: Privacy Policy text snippet -->
+
+      <!-- Column 3: Privacy Policy Snippet -->
       <div>
         <h3 class="font-bold text-lg mb-4">Privacy Policy</h3>
         <p class="text-sm text-white">
-          Real-estate data is sensitive. We don’t share your leads or chat transcripts with third parties. All conversations and contact info are encrypted (TLS 1.2+). You own your data—period. Read our full <a href="#privacy" class="underline">Privacy Policy</a> for details.
+          We never share your data. All leads are encrypted in transit (TLS 1.2+) and at rest (AES-256). You own your Airtable base—period. See full <a href="#privacy" class="underline">Privacy Policy</a>.
         </p>
       </div>
     </div>
-    <!-- Bottom copyright -->
     <div class="border-t border-accent/50 mt-8 pt-6">
       <p class="text-center text-sm text-accent">
-        © 2025 RealtyBot, Inc. All rights reserved.
+        © 2025 RealtyBot DIY. All rights reserved.
       </p>
     </div>
   </footer>
 
 
   <!-- ============================================== -->
-  <!-- 13. PRIVACY POLICY PAGE SECTION (Hidden / For Footer Link) -->
+  <!-- 12. PRIVACY POLICY (Hidden Section) -->
   <!-- ============================================== -->
-  <!-- You can move this to a separate page (privacy.html) or keep it here with an anchor. -->
   <section class="py-16 bg-white hidden" id="privacy">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-3xl font-bold text-primary mb-6">Privacy Policy</h2>
       <p class="text-secondary mb-4">
-        At RealtyBot, we take your privacy seriously. This policy explains how we collect, use, and safeguard your personal information when you use our website or chatbot services.
+        At RealtyBot DIY, we respect your privacy. This policy outlines how we collect, use, and protect your personal data when you purchase and use our video tutorials and templates.
       </p>
       <h3 class="font-semibold text-primary mb-2">1. Information We Collect</h3>
       <p class="text-secondary mb-4">
-        • <strong>Contact Information:</strong> Name, email, phone number—collected when you fill out a form or chat.  
-        • <strong>Chat Transcripts:</strong> The questions you ask and the answers our chatbot provides.  
-        • <strong>Usage Data:</strong> Browser type, device info, pages visited—collected via cookies and analytics tools.
+        • <strong>Contact Info:</strong> Name, email, and phone when you purchase or book a call.  
+        • <strong>Usage Data:</strong> Page visits, video watch times, and error logs for improving our content.  
+        • <strong>Payment Info:</strong> Processed through Stripe—no credit card data is stored on our servers.
       </p>
-      <h3 class="font-semibold text-primary mb-2">2. How We Use Your Information</h3>
+      <h3 class="font-semibold text-primary mb-2">2. How We Use Your Data</h3>
       <p class="text-secondary mb-4">
-        • To qualify leads and route them to your CRM.  
-        • To schedule showings and send automated reminders.  
-        • To provide neighborhood FAQs—schools, taxes, comps.  
-        • To send you relevant marketing or product updates (only if you opt-in).
+        • To deliver video content and support instructions.  
+        • To send order confirmations, receipts, and optional marketing emails (only if you opt in).  
+        • To schedule and remind you about booked Zoom calls via Calendly.
       </p>
       <h3 class="font-semibold text-primary mb-2">3. Data Security</h3>
       <p class="text-secondary mb-4">
-        • We encrypt all data in transit (TLS 1.2+) and at rest (AES-256).  
-        • Access to your data is restricted—only you and your authorized team can view leads.  
-        • We perform regular security audits and vulnerability scans.
+        We encrypt all data in transit (TLS 1.2+) and at rest (AES-256). Access is restricted to our support team. We conduct regular security audits and maintain GDPR/CCPA compliance.
       </p>
       <h3 class="font-semibold text-primary mb-2">4. Your Rights</h3>
       <p class="text-secondary mb-4">
-        • <strong>Access:</strong> You can request a copy of all personal data we hold on you.  
-        • <strong>Correction:</strong> You can update or correct inaccurate data.  
-        • <strong>Deletion:</strong> You can request deletion of your personal data at any time.  
-        • <strong>Opt-Out:</strong> You may opt-out of marketing emails by clicking “Unsubscribe” in any email.
+        • <strong>Access:</strong> You can request all data we hold on you.  
+        • <strong>Correction:</strong> Update or correct inaccurate information.  
+        • <strong>Deletion:</strong> Request deletion of your personal data.  
+        • <strong>Opt-Out:</strong> Unsubscribe from marketing emails at any time.
       </p>
-      <h3 class="font-semibold text-primary mb-2">5. Third-Party Integrations</h3>
+      <h3 class="font-semibold text-primary mb-2">5. Third-Party Services</h3>
       <p class="text-secondary mb-4">
-        We integrate with third-party services (e.g. Formspree, Calendly, Analytics). Each service has its own privacy terms—please review them individually. We do not sell your data to any third party.
+        We use Stripe for payments, Vimeo for video hosting, Calendly for scheduling, and Airtable for data storage. Each service has its own privacy policy—please review them individually.
       </p>
       <h3 class="font-semibold text-primary mb-2">6. Cookies & Tracking</h3>
       <p class="text-secondary mb-4">
-        We use cookies to track usage patterns and improve performance. You can choose to disable cookies in your browser, but some features may not work properly without them.
+        We use cookies for analytics and performance tracking (Google Analytics). Disabling cookies may limit certain features.
       </p>
       <h3 class="font-semibold text-primary mb-2">7. Changes to This Policy</h3>
       <p class="text-secondary mb-4">
-        We may update this policy from time to time. When we do, we will notify you on our website and update the “Last Revised” date below.
+        We update this policy periodically. Changes will be posted here with a new “Last Revised” date.
       </p>
       <p class="text-sm text-secondary italic">
         Last Revised: May 31, 2025
@@ -708,3 +706,4 @@
 
 </body>
 </html>
+
