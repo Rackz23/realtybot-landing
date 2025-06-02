@@ -11,7 +11,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
       display: none;
       justify-content: center;
       align-items: center;
@@ -19,7 +19,7 @@
     }
     .modal-content {
       background-color: white;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       padding: 1.5rem;
       max-width: 90vw;
       max-height: 90vh;
@@ -28,6 +28,7 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
+
   <!-- Header -->
   <header class="bg-white shadow">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
@@ -38,11 +39,14 @@
   <!-- Hero Section with Mailchimp Form + Video -->
   <section class="bg-white">
     <div class="container mx-auto px-6 py-16 text-center">
-      <h1 class="text-4xl font-bold mb-4">Boost Your Real Estate Leads with Apex Estate Solutions</h1>
+      <h1 class="text-4xl font-bold mb-4">
+        Boost Your Real Estate Leads with Apex Estate Solutions
+      </h1>
       <p class="text-lg mb-6">
         Enter your email to watch our quick 2-minute demo and discover how to capture hot leads instantly.
       </p>
-      <!-- Email Capture Form -->
+
+      <!-- Email Capture Form (Primary) -->
       <div id="emailSection" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <form id="mc-form" class="space-y-4">
           <input
@@ -59,7 +63,9 @@
           >
             Get Instant Access
           </button>
-          <p id="formError" class="text-red-500 text-sm hidden">Subscription failed. Try again.</p>
+          <p id="formError" class="text-red-500 text-sm hidden">
+            Subscription failed. Try again.
+          </p>
         </form>
       </div>
 
@@ -75,20 +81,40 @@
   <!-- “Works With Leading Brokerages” Section -->
   <section class="bg-gray-100">
     <div class="container mx-auto px-6 py-12 text-center">
-      <h2 class="text-2xl font-semibold mb-4">Works Seamlessly with Leading Brokerages</h2>
+      <h2 class="text-2xl font-semibold mb-4">
+        Works Seamlessly with Leading Brokerages
+      </h2>
       <p class="text-sm text-gray-600 mb-6">
         Company names and logos are trademarks of their respective owners. Use of these logos does not imply
         affiliation or endorsement by those brokerages.
       </p>
       <div class="flex justify-center space-x-8 mb-8">
-        <img src="assets/keller-williams.svg" alt="Keller Williams Realty" class="h-8 opacity-80 hover:opacity-100 transition" />
-        <img src="assets/remax.svg" alt="RE/MAX" class="h-8 opacity-80 hover:opacity-100 transition" />
-        <img src="assets/coldwell-banker.svg" alt="Coldwell Banker" class="h-8 opacity-80 hover:opacity-100 transition" />
-        <img src="assets/century-21.svg" alt="Century 21 Real Estate" class="h-8 opacity-80 hover:opacity-100 transition" />
+        <img
+          src="assets/keller-williams.svg"
+          alt="Keller Williams Realty"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
+        <img
+          src="assets/remax.svg"
+          alt="RE/MAX"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
+        <img
+          src="assets/coldwell-banker.svg"
+          alt="Coldwell Banker"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
+        <img
+          src="assets/century-21.svg"
+          alt="Century 21 Real Estate"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
       </div>
       <blockquote class="italic text-gray-700 max-w-2xl mx-auto">
         “Agents at Keller Williams already saw a 35% boost in lead conversions using Apex’s chatbot.”<br />
-        <span class="font-semibold">– John Smith, Keller Williams Team Lead</span>
+        <span class="font-semibold">
+          – John Smith, Keller Williams Team Lead
+        </span>
       </blockquote>
     </div>
   </section>
@@ -96,7 +122,9 @@
   <!-- ROI Stats Section -->
   <section class="bg-white">
     <div class="container mx-auto px-6 py-12">
-      <h2 class="text-2xl font-semibold text-center mb-8">Real Results for Real Agents</h2>
+      <h2 class="text-2xl font-semibold text-center mb-8">
+        Real Results for Real Agents
+      </h2>
       <div class="grid md:grid-cols-3 gap-8 text-center mb-8">
         <div>
           <p class="text-5xl font-bold text-blue-600">41%</p>
@@ -130,7 +158,7 @@
         </ul>
       </div>
 
-      <!-- Repeat Watch Demo CTA -->
+      <!-- Repeat Watch Demo CTA (Secondary) -->
       <div class="text-center">
         <div id="secondEmailSection" class="max-w-md mx-auto">
           <form id="mc-form-2" class="flex space-x-0">
@@ -149,13 +177,15 @@
               Watch Demo
             </button>
           </form>
-          <p class="text-sm text-gray-500 mt-2">We respect your privacy. We never share your email.</p>
+          <p class="text-sm text-gray-500 mt-2">
+            We respect your privacy. We never share your email.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Secondary CTA Section -->
+  <!-- Secondary CTA Section ("Ready to Talk?") -->
   <section class="bg-blue-600">
     <div class="container mx-auto px-6 py-12 text-center text-white">
       <h2 class="text-3xl font-bold mb-4">Ready to Talk?</h2>
@@ -174,21 +204,32 @@
   <!-- Booking Modal (hidden initially) -->
   <div id="bookingModal" class="modal-backdrop flex">
     <div class="modal-content">
-      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4">&times;</button>
-      <h3 class="text-xl font-bold mb-2">Book a Call</n<h3>
+      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4">
+        &times;
+      </button>
+      <h3 class="text-xl font-bold mb-2">Book a Call</h3>
       <!-- Inline Calendly embed: replace URL with your own link -->
-      <div class="calendly-inline-widget"
-           data-url="https://calendly.com/your-calendly-username/demo-call"
-           style="min-width:320px;height:630px;">
-      </div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <div
+        class="calendly-inline-widget"
+        data-url="https://calendly.com/your-calendly-username/demo-call"
+        style="min-width:320px;height:630px;"
+      ></div>
+      <script
+        type="text/javascript"
+        src="https://assets.calendly.com/assets/external/widget.js"
+        async
+      ></script>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="bg-gray-800">
     <div class="container mx-auto px-6 py-6 text-center text-gray-400">
-      <img src="assets/apex-logo.png" alt="Apex Estate Solutions" class="h-8 mx-auto mb-4 opacity-50" />
+      <img
+        src="assets/apex-logo.png"
+        alt="Apex Estate Solutions"
+        class="h-8 mx-auto mb-4 opacity-50"
+      />
       <div class="space-x-4 mb-2">
         <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
         <a href="terms.html" class="hover:text-white">Terms of Service</a>
@@ -213,8 +254,8 @@
       const videoSection = document.getElementById('videoSection');
 
       // Mailchimp details (from your embedded form)
-      const dataCenter  = 'us5';                // from "app.us5.list-manage.com"
-      const mailchimpU  = 'f2ebf5b6d3307d2eb64af59c1';
+      const dataCenter = 'us5'; // from "app.us5.list-manage.com"
+      const mailchimpU = 'f2ebf5b6d3307d2eb64af59c1';
       const mailchimpId = '091391f2ec';
 
       // Reusable function to submit via JSONP
@@ -228,7 +269,6 @@
         window['jsonpCallback'] = function(data) {
           document.body.removeChild(script);
           delete window['jsonpCallback'];
-
           onSuccess(data);
         };
       }
@@ -249,7 +289,7 @@
         });
       });
 
-      // Form2 (Secondary CTA) submission: scroll to emailSection if needed
+      // Form2 (Secondary CTA) submission
       form2.addEventListener('submit', function(event) {
         event.preventDefault();
         submitToMailchimp(emailInput2.value, function(data) {
@@ -260,7 +300,6 @@
             videoSection.classList.remove('hidden');
             loadYouTubePlayer();
           } else {
-            // Optionally show an error near this form
             alert(data.msg || 'Subscription failed. Try again.');
           }
         });
@@ -272,14 +311,14 @@
     // ──────────────────────────────────────────────────────────────────────────────
     let player;
     function onYouTubeIframeAPIReady() {
-      // This will be called by the API—but we only instantiate after form success.
+      // Called by API—player will be instantiated after form success.
     }
 
     function loadYouTubePlayer() {
       player = new YT.Player('player', {
         height: '360',
         width: '640',
-        videoId: 'YOUR_VIDEO_ID',  // <-- Replace with your YouTube Video ID
+        videoId: 'YOUR_VIDEO_ID', // <-- Replace with your YouTube Video ID
         playerVars: {
           autoplay: 1,
           controls: 1,
