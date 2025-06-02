@@ -3,8 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind CSS (for styling) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Watch Demo</title>
+  <style>
+    /* Modal backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+    .modal-content {
+      background-color: white;
+      border-radius: .5rem;
+      padding: 1.5rem;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
   <!-- Header -->
@@ -14,29 +35,40 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with Mailchimp Form + Video -->
   <section class="bg-white">
     <div class="container mx-auto px-6 py-16 text-center">
       <h1 class="text-4xl font-bold mb-4">Boost Your Real Estate Leads with Apex Estate Solutions</h1>
       <p class="text-lg mb-6">
         Enter your email to watch our quick 2-minute demo and discover how to capture hot leads instantly.
       </p>
-      <form action="#" method="POST" class="max-w-md mx-auto flex">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email address"
-          required
-          class="w-full px-4 py-3 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          type="submit"
-          class="bg-blue-600 text-white px-6 py-3 rounded-r-md font-semibold hover:bg-blue-700 transition"
-        >
-          Watch Demo
-        </button>
-      </form>
-      <p class="text-sm text-gray-500 mt-2">We respect your privacy. We never share your email.</p>
+      <!-- Email Capture Form -->
+      <div id="emailSection" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <form id="mc-form" class="space-y-4">
+          <input
+            type="email"
+            name="EMAIL"
+            id="mc-email"
+            placeholder="Enter your email"
+            required
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            Get Instant Access
+          </button>
+          <p id="formError" class="text-red-500 text-sm hidden">Subscription failed. Try again.</p>
+        </form>
+      </div>
+
+      <!-- Video Container (hidden initially) -->
+      <div id="videoSection" class="hidden max-w-md mx-auto bg-white p-8 rounded-lg shadow-md mt-8">
+        <h2 class="text-2xl font-semibold mb-4">Your Demo</h2>
+        <!-- YouTube player will load here -->
+        <div id="player"></div>
+      </div>
     </div>
   </section>
 
@@ -100,22 +132,25 @@
 
       <!-- Repeat Watch Demo CTA -->
       <div class="text-center">
-        <form action="#" method="POST" class="max-w-md mx-auto flex">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email address"
-            required
-            class="w-full px-4 py-3 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            type="submit"
-            class="bg-blue-600 text-white px-6 py-3 rounded-r-md font-semibold hover:bg-blue-700 transition"
-          >
-            Watch Demo
-          </button>
-        </form>
-        <p class="text-sm text-gray-500 mt-2">We respect your privacy. We never share your email.</p>
+        <div id="secondEmailSection" class="max-w-md mx-auto">
+          <form id="mc-form-2" class="flex space-x-0">
+            <input
+              type="email"
+              name="EMAIL"
+              id="mc-email-2"
+              placeholder="Enter your email"
+              required
+              class="w-full px-4 py-3 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-6 py-3 rounded-r-md font-semibold hover:bg-blue-700 transition"
+            >
+              Watch Demo
+            </button>
+          </form>
+          <p class="text-sm text-gray-500 mt-2">We respect your privacy. We never share your email.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -136,6 +171,20 @@
     </div>
   </section>
 
+  <!-- Booking Modal (hidden initially) -->
+  <div id="bookingModal" class="modal-backdrop flex">
+    <div class="modal-content">
+      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4">&times;</button>
+      <h3 class="text-xl font-bold mb-2">Book a Call</n<h3>
+      <!-- Inline Calendly embed: replace URL with your own link -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/your-calendly-username/demo-call"
+           style="min-width:320px;height:630px;">
+      </div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-gray-800">
     <div class="container mx-auto px-6 py-6 text-center text-gray-400">
@@ -147,5 +196,123 @@
       <p>&copy; 2025 Apex Estate Solutions. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- YouTube IFrame API + Custom JS -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    // ──────────────────────────────────────────────────────────────────────────────
+    // 1) MAILCHIMP FORM SUBMISSION (AJAX via JSONP)
+    // ──────────────────────────────────────────────────────────────────────────────
+    (function() {
+      const form1 = document.getElementById('mc-form');
+      const form2 = document.getElementById('mc-form-2');
+      const emailInput1 = document.getElementById('mc-email');
+      const emailInput2 = document.getElementById('mc-email-2');
+      const errorMsg = document.getElementById('formError');
+      const emailSection = document.getElementById('emailSection');
+      const videoSection = document.getElementById('videoSection');
+
+      // Mailchimp details (from your embedded form)
+      const dataCenter  = 'us5';                // from "app.us5.list-manage.com"
+      const mailchimpU  = 'f2ebf5b6d3307d2eb64af59c1';
+      const mailchimpId = '091391f2ec';
+
+      // Reusable function to submit via JSONP
+      function submitToMailchimp(emailValue, onSuccess) {
+        const email = encodeURIComponent(emailValue.trim());
+        const url = `https://${dataCenter}.list-manage.com/subscribe/post-json?u=${mailchimpU}&id=${mailchimpId}&EMAIL=${email}&c=?`;
+        const script = document.createElement('script');
+        script.src = url;
+        document.body.appendChild(script);
+
+        window['jsonpCallback'] = function(data) {
+          document.body.removeChild(script);
+          delete window['jsonpCallback'];
+
+          onSuccess(data);
+        };
+      }
+
+      // Form1 (Hero) submission
+      form1.addEventListener('submit', function(event) {
+        event.preventDefault();
+        errorMsg.classList.add('hidden');
+        submitToMailchimp(emailInput1.value, function(data) {
+          if (data.result === 'success') {
+            emailSection.classList.add('hidden');
+            videoSection.classList.remove('hidden');
+            loadYouTubePlayer();
+          } else {
+            errorMsg.textContent = data.msg || 'Subscription failed. Try again.';
+            errorMsg.classList.remove('hidden');
+          }
+        });
+      });
+
+      // Form2 (Secondary CTA) submission: scroll to emailSection if needed
+      form2.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitToMailchimp(emailInput2.value, function(data) {
+          if (data.result === 'success') {
+            // Scroll to top and trigger video
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            emailSection.classList.add('hidden');
+            videoSection.classList.remove('hidden');
+            loadYouTubePlayer();
+          } else {
+            // Optionally show an error near this form
+            alert(data.msg || 'Subscription failed. Try again.');
+          }
+        });
+      });
+    })();
+
+    // ──────────────────────────────────────────────────────────────────────────────
+    // 2) YOUTUBE IFRAME API TO DETECT “ENDED”
+    // ──────────────────────────────────────────────────────────────────────────────
+    let player;
+    function onYouTubeIframeAPIReady() {
+      // This will be called by the API—but we only instantiate after form success.
+    }
+
+    function loadYouTubePlayer() {
+      player = new YT.Player('player', {
+        height: '360',
+        width: '640',
+        videoId: 'YOUR_VIDEO_ID',  // <-- Replace with your YouTube Video ID
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          modestbranding: 1,
+          rel: 0
+        },
+        events: {
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      // YT.PlayerState.ENDED === 0
+      if (event.data === YT.PlayerState.ENDED) {
+        showBookingModal();
+      }
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────
+    // 3) BOOKING MODAL LOGIC
+    // ──────────────────────────────────────────────────────────────────────────────
+    function showBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+
+    document.getElementById('closeModal').addEventListener('click', function() {
+      const modal = document.getElementById('bookingModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+  </script>
 </body>
 </html>
