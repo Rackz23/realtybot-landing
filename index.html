@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS (for styling) -->
+  <!-- Tailwind CSS (for basic styling) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Watch Demo</title>
   <style>
-    /* Simple error‐text styling */
     .hidden { display: none; }
   </style>
 </head>
@@ -186,61 +185,64 @@
     </div>
   </footer>
 
-  <!-- JavaScript: AJAX (JSONP) to Mailchimp + Redirect -->
+  <!-- JavaScript: AJAX (JSONP) Mailchimp + Immediate Redirect -->
   <script>
     /**
-     * Helper: submit to Mailchimp via JSONP, then redirect to demo.html.
+     * Submits the given email to Mailchimp via JSONP, then redirects to demo.html.
      *
-     * @param {string} position - "top" or "bottom" to know which form's elements to read.
-     * @returns {boolean} - Always returns false to prevent default form submit.
+     * @param {string} position - "top" or "bottom" to know which form to read.
      */
     function submitAndRedirect(position) {
-      // Identify the email input + error <p> for this form
-      const emailInput = document.getElementById(position === 'top' ? 'mc-email-top' : 'mc-email-bottom');
-      const errorMsg = document.getElementById(position === 'top' ? 'formError-top' : 'formError-bottom');
+      // Identify email field + error <p> by position
+      const emailInput = document.getElementById(
+        position === 'top' ? 'mc-email-top' : 'mc-email-bottom'
+      );
+      const errorMsg = document.getElementById(
+        position === 'top' ? 'formError-top' : 'formError-bottom'
+      );
       const email = emailInput.value.trim();
 
       if (!email) {
-        // Show error if no email
         errorMsg.textContent = 'Please enter a valid email.';
         errorMsg.classList.remove('hidden');
-        return false; // Stop any default form action
+        return false;
       }
 
-      // Mailchimp JSONP endpoint parameters (Apex Leads audience)
-      const dataCenter = 'us5'; // from app.us5.list-manage.com
+      // Mailchimp JSONP endpoint (Apex Leads audience)
+      const dataCenter = 'us5'; // from "app.us5.list-manage.com"
       const mailchimpU = 'f2ebf5b6d3307d2eb64af59c1';
       const mailchimpId = '091391f2ec';
       const encodedEmail = encodeURIComponent(email);
 
-      // Build JSONP URL
-      const url = `https://${dataCenter}.list-manage.com/subscribe/post-json?u=${mailchimpU}&id=${mailchimpId}&EMAIL=${encodedEmail}&c=?`;
+      // Use JSONP callback parameter explicitly
+      const url =
+        `https://${dataCenter}.list-manage.com/subscribe/post-json` +
+        `?u=${mailchimpU}&id=${mailchimpId}&EMAIL=${encodedEmail}&c=jsonpCallback`;
 
-      // Create <script> for JSONP
+      // Build a <script> tag for JSONP
       const script = document.createElement('script');
       script.src = url;
       document.body.appendChild(script);
 
-      // JSONP callback
-      window['jsonpCallback'] = function(data) {
-        // Clean up the script tag & callback
+      // JSONP callback function
+      window.jsonpCallback = function(data) {
         document.body.removeChild(script);
-        delete window['jsonpCallback'];
+        delete window.jsonpCallback;
 
         if (data.result === 'success') {
-          // On success, redirect to demo.html with email in query
+          // Redirect immediately to demo.html with email in query
           window.location.href = `demo.html?email=${encodedEmail}`;
         } else {
-          // On failure, show Mailchimp's error message
+          // Show Mailchimp’s error message
           errorMsg.textContent = data.msg || 'Subscription failed. Please try again.';
           errorMsg.classList.remove('hidden');
         }
       };
 
-      return false; // Prevent the default form submission
+      return false; // Prevent normal form submission
     }
 
-    // Wire up both forms
+    // Hook up both forms
     document.getElementById('mc-form-top').addEventListener('submit', function(e) {
       e.preventDefault();
       submitAndRedirect('top');
@@ -252,4 +254,3 @@
   </script>
 </body>
 </html>
-
