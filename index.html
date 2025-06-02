@@ -7,12 +7,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Watch Demo</title>
   <style>
-    /* Modal backdrop */
+    /* Modal backdrop (hidden by default) */
     .modal-backdrop {
       position: fixed;
       inset: 0;
       background-color: rgba(0, 0, 0, 0.5);
-      display: none;
+      display: none; /* stays hidden until JS sets display:flex */
       justify-content: center;
       align-items: center;
       z-index: 50;
@@ -201,8 +201,8 @@
     </div>
   </section>
 
-  <!-- Booking Modal (hidden initially) -->
-  <div id="bookingModal" class="modal-backdrop flex">
+  <!-- Booking Modal (hidden by default) -->
+  <div id="bookingModal" class="modal-backdrop">
     <div class="modal-content">
       <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4">
         &times;
@@ -318,7 +318,7 @@
       player = new YT.Player('player', {
         height: '360',
         width: '640',
-        videoId: 'YOUR_VIDEO_ID', // <-- Replace with your YouTube Video ID
+        videoId: 'prvWyZrPVkc', // <-- Your provided YouTube ID
         playerVars: {
           autoplay: 1,
           controls: 1,
@@ -343,8 +343,8 @@
     // ──────────────────────────────────────────────────────────────────────────────
     function showBookingModal() {
       const modal = document.getElementById('bookingModal');
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
+      modal.style.display = 'flex';  // override display:none → display:flex
+      document.body.style.overflow = 'hidden';
     }
 
     document.getElementById('closeModal').addEventListener('click', function() {
