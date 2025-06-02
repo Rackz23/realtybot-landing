@@ -3,32 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS (for styling) -->
+  <!-- Tailwind CSS (optional) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Watch Demo</title>
-  <style>
-    /* Modal backdrop (hidden by default) */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: none; /* stays hidden until JS sets display:flex */
-      justify-content: center;
-      align-items: center;
-      z-index: 50;
-    }
-    .modal-content {
-      background-color: white;
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      max-width: 90vw;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-  </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
-
   <!-- Header -->
   <header class="bg-white shadow">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
@@ -36,7 +15,7 @@
     </div>
   </header>
 
-  <!-- Hero Section with Mailchimp Form + Video -->
+  <!-- Hero Section -->
   <section class="bg-white">
     <div class="container mx-auto px-6 py-16 text-center">
       <h1 class="text-4xl font-bold mb-4">
@@ -46,16 +25,34 @@
         Enter your email to watch our quick 2-minute demo and discover how to capture hot leads instantly.
       </p>
 
-      <!-- Email Capture Form (Primary) -->
-      <div id="emailSection" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-        <form id="mc-form" class="space-y-4">
+      <!-- MAILCHIMP EMBEDDED FORM (Apex Leads Audience) -->
+      <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <!-- 
+          Replace the `action` URL with your own Mailchimp URL:
+          action="https://app.us5.list-manage.com/subscribe/post?u=f2ebf5b6d3307d2eb64af59c1&id=091391f2ec"
+        -->
+        <form
+          action="https://app.us5.list-manage.com/subscribe/post?u=f2ebf5b6d3307d2eb64af59c1&amp;id=091391f2ec&amp;f_id=00322bebf0"
+          method="post"
+          id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          class="validate space-y-4"
+          target="popupwindow"
+          onsubmit="return validateAndRedirect();"
+        >
           <input
             type="email"
             name="EMAIL"
-            id="mc-email"
+            id="mce-EMAIL"
             placeholder="Enter your email"
             required
             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="hidden"
+            name="b_f2ebf5b6d3307d2eb64af59c1_091391f2ec"
+            tabindex="-1"
+            value=""
           />
           <button
             type="submit"
@@ -64,172 +61,17 @@
             Get Instant Access
           </button>
           <p id="formError" class="text-red-500 text-sm hidden">
-            Subscription failed. Try again.
+            Subscription failed. Please try again.
           </p>
         </form>
       </div>
-
-      <!-- Video Container (hidden initially) -->
-      <div id="videoSection" class="hidden max-w-md mx-auto bg-white p-8 rounded-lg shadow-md mt-8">
-        <h2 class="text-2xl font-semibold mb-4">Your Demo</h2>
-        <!-- YouTube player will load here -->
-        <div id="player"></div>
-      </div>
     </div>
   </section>
 
-  <!-- “Works With Leading Brokerages” Section -->
-  <section class="bg-gray-100">
-    <div class="container mx-auto px-6 py-12 text-center">
-      <h2 class="text-2xl font-semibold mb-4">
-        Works Seamlessly with Leading Brokerages
-      </h2>
-      <p class="text-sm text-gray-600 mb-6">
-        Company names and logos are trademarks of their respective owners. Use of these logos does not imply
-        affiliation or endorsement by those brokerages.
-      </p>
-      <div class="flex justify-center space-x-8 mb-8">
-        <img
-          src="assets/keller-williams.svg"
-          alt="Keller Williams Realty"
-          class="h-8 opacity-80 hover:opacity-100 transition"
-        />
-        <img
-          src="assets/remax.svg"
-          alt="RE/MAX"
-          class="h-8 opacity-80 hover:opacity-100 transition"
-        />
-        <img
-          src="assets/coldwell-banker.svg"
-          alt="Coldwell Banker"
-          class="h-8 opacity-80 hover:opacity-100 transition"
-        />
-        <img
-          src="assets/century-21.svg"
-          alt="Century 21 Real Estate"
-          class="h-8 opacity-80 hover:opacity-100 transition"
-        />
-      </div>
-      <blockquote class="italic text-gray-700 max-w-2xl mx-auto">
-        “Agents at Keller Williams already saw a 35% boost in lead conversions using Apex’s chatbot.”<br />
-        <span class="font-semibold">
-          – John Smith, Keller Williams Team Lead
-        </span>
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- ROI Stats Section -->
-  <section class="bg-white">
-    <div class="container mx-auto px-6 py-12">
-      <h2 class="text-2xl font-semibold text-center mb-8">
-        Real Results for Real Agents
-      </h2>
-      <div class="grid md:grid-cols-3 gap-8 text-center mb-8">
-        <div>
-          <p class="text-5xl font-bold text-blue-600">41%</p>
-          <p class="mt-2">Average Revenue Increase</p>
-        </div>
-        <div>
-          <p class="text-5xl font-bold text-blue-600">30+</p>
-          <p class="mt-2">New Leads per Month</p>
-        </div>
-        <div>
-          <p class="text-5xl font-bold text-blue-600">24–48 hrs</p>
-          <p class="mt-2">From Demo to Live Deployment</p>
-        </div>
-      </div>
-
-      <!-- How It Works Bullets -->
-      <div class="max-w-2xl mx-auto mb-8">
-        <ul class="list-disc list-inside text-left text-gray-700 space-y-2">
-          <li>
-            <span class="font-semibold">Instant Lead Capture:</span>
-            Automatically qualify and route hot prospects without lifting a finger.
-          </li>
-          <li>
-            <span class="font-semibold">Zero Technical Setup:</span>
-            Our team handles all integration with Landbot & Airtable—no coding needed.
-          </li>
-          <li>
-            <span class="font-semibold">Live in 48 Hours:</span>
-            Dedicated CSM gets you up and running fast, so you start converting immediately.
-          </li>
-        </ul>
-      </div>
-
-      <!-- Repeat Watch Demo CTA (Secondary) -->
-      <div class="text-center">
-        <div id="secondEmailSection" class="max-w-md mx-auto">
-          <form id="mc-form-2" class="flex space-x-0">
-            <input
-              type="email"
-              name="EMAIL"
-              id="mc-email-2"
-              placeholder="Enter your email"
-              required
-              class="w-full px-4 py-3 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              class="bg-blue-600 text-white px-6 py-3 rounded-r-md font-semibold hover:bg-blue-700 transition"
-            >
-              Watch Demo
-            </button>
-          </form>
-          <p class="text-sm text-gray-500 mt-2">
-            We respect your privacy. We never share your email.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Secondary CTA Section ("Ready to Talk?") -->
-  <section class="bg-blue-600">
-    <div class="container mx-auto px-6 py-12 text-center text-white">
-      <h2 class="text-3xl font-bold mb-4">Ready to Talk?</h2>
-      <p class="mb-6">
-        If you’re excited to see real results, book a call with our team now.
-      </p>
-      <a
-        href="#book-call"
-        class="inline-block bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition"
-      >
-        Book a Call
-      </a>
-    </div>
-  </section>
-
-  <!-- Booking Modal (hidden by default) -->
-  <div id="bookingModal" class="modal-backdrop">
-    <div class="modal-content">
-      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4">
-        &times;
-      </button>
-      <h3 class="text-xl font-bold mb-2">Book a Call</h3>
-      <!-- Inline Calendly embed: replace URL with your own link -->
-      <div
-        class="calendly-inline-widget"
-        data-url="https://calendly.com/your-calendly-username/demo-call"
-        style="min-width:320px;height:630px;"
-      ></div>
-      <script
-        type="text/javascript"
-        src="https://assets.calendly.com/assets/external/widget.js"
-        async
-      ></script>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800">
+  <!-- Footer (optional) -->
+  <footer class="bg-gray-800 mt-20">
     <div class="container mx-auto px-6 py-6 text-center text-gray-400">
-      <img
-        src="assets/apex-logo.png"
-        alt="Apex Estate Solutions"
-        class="h-8 mx-auto mb-4 opacity-50"
-      />
+      <img src="assets/apex-logo.png" alt="Apex Estate Solutions" class="h-8 mx-auto mb-4 opacity-50" />
       <div class="space-x-4 mb-2">
         <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
         <a href="terms.html" class="hover:text-white">Terms of Service</a>
@@ -238,120 +80,34 @@
     </div>
   </footer>
 
-  <!-- YouTube IFrame API + Custom JS -->
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    // ──────────────────────────────────────────────────────────────────────────────
-    // 1) MAILCHIMP FORM SUBMISSION (AJAX via JSONP)
-    // ──────────────────────────────────────────────────────────────────────────────
-    (function() {
-      const form1 = document.getElementById('mc-form');
-      const form2 = document.getElementById('mc-form-2');
-      const emailInput1 = document.getElementById('mc-email');
-      const emailInput2 = document.getElementById('mc-email-2');
-      const errorMsg = document.getElementById('formError');
-      const emailSection = document.getElementById('emailSection');
-      const videoSection = document.getElementById('videoSection');
+    /**
+     * 1) When the Mailchimp form is submitted, it opens a popup for Mailchimp’s “Thank You” page.
+     * 2) We grab the email address, then redirect the main window (not the popup) to demo.html.
+     * 3) If the popup fails, we show an error message.
+     */
 
-      // Mailchimp details (from your embedded form)
-      const dataCenter = 'us5'; // from "app.us5.list-manage.com"
-      const mailchimpU = 'f2ebf5b6d3307d2eb64af59c1';
-      const mailchimpId = '091391f2ec';
-
-      // Reusable function to submit via JSONP
-      function submitToMailchimp(emailValue, onSuccess) {
-        const email = encodeURIComponent(emailValue.trim());
-        const url = `https://${dataCenter}.list-manage.com/subscribe/post-json?u=${mailchimpU}&id=${mailchimpId}&EMAIL=${email}&c=?`;
-        const script = document.createElement('script');
-        script.src = url;
-        document.body.appendChild(script);
-
-        window['jsonpCallback'] = function(data) {
-          document.body.removeChild(script);
-          delete window['jsonpCallback'];
-          onSuccess(data);
-        };
+    function validateAndRedirect() {
+      // Get the email field
+      const emailField = document.getElementById('mce-EMAIL');
+      const email = emailField.value.trim();
+      if (!email) {
+        // Show a simple error if no email
+        document.getElementById('formError').textContent = 'Please enter a valid email.';
+        document.getElementById('formError').classList.remove('hidden');
+        return false;
       }
 
-      // Form1 (Hero) submission
-      form1.addEventListener('submit', function(event) {
-        event.preventDefault();
-        errorMsg.classList.add('hidden');
-        submitToMailchimp(emailInput1.value, function(data) {
-          if (data.result === 'success') {
-            emailSection.classList.add('hidden');
-            videoSection.classList.remove('hidden');
-            loadYouTubePlayer();
-          } else {
-            errorMsg.textContent = data.msg || 'Subscription failed. Try again.';
-            errorMsg.classList.remove('hidden');
-          }
-        });
-      });
+      // Open the Mailchimp popup (the `target="popupwindow"` causes this to open in a small window)
+      // After a brief delay, redirect the main window to demo.html
+      setTimeout(() => {
+        // Encode email so it’s safe in a URL
+        const encoded = encodeURIComponent(email);
+        window.location.href = `demo.html?email=${encoded}`;
+      }, 500); // 0.5 second delay so Mailchimp can process
 
-      // Form2 (Secondary CTA) submission
-      form2.addEventListener('submit', function(event) {
-        event.preventDefault();
-        submitToMailchimp(emailInput2.value, function(data) {
-          if (data.result === 'success') {
-            // Scroll to top and trigger video
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            emailSection.classList.add('hidden');
-            videoSection.classList.remove('hidden');
-            loadYouTubePlayer();
-          } else {
-            alert(data.msg || 'Subscription failed. Try again.');
-          }
-        });
-      });
-    })();
-
-    // ──────────────────────────────────────────────────────────────────────────────
-    // 2) YOUTUBE IFRAME API TO DETECT “ENDED”
-    // ──────────────────────────────────────────────────────────────────────────────
-    let player;
-    function onYouTubeIframeAPIReady() {
-      // Called by API—player will be instantiated after form success.
+      return true; 
     }
-
-    function loadYouTubePlayer() {
-      player = new YT.Player('player', {
-        height: '360',
-        width: '640',
-        videoId: 'prvWyZrPVkc', // <-- Your provided YouTube ID
-        playerVars: {
-          autoplay: 1,
-          controls: 1,
-          modestbranding: 1,
-          rel: 0
-        },
-        events: {
-          onStateChange: onPlayerStateChange
-        }
-      });
-    }
-
-    function onPlayerStateChange(event) {
-      // YT.PlayerState.ENDED === 0
-      if (event.data === YT.PlayerState.ENDED) {
-        showBookingModal();
-      }
-    }
-
-    // ──────────────────────────────────────────────────────────────────────────────
-    // 3) BOOKING MODAL LOGIC
-    // ──────────────────────────────────────────────────────────────────────────────
-    function showBookingModal() {
-      const modal = document.getElementById('bookingModal');
-      modal.style.display = 'flex';  // override display:none → display:flex
-      document.body.style.overflow = 'hidden';
-    }
-
-    document.getElementById('closeModal').addEventListener('click', function() {
-      const modal = document.getElementById('bookingModal');
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    });
   </script>
 </body>
 </html>
