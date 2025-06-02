@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS CDN for styling -->
+  <!-- Tailwind CSS (for styling) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Watch Demo</title>
+  <style>
+    /* Simple error‐text styling */
+    .hidden { display: none; }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
@@ -28,16 +32,7 @@
 
       <!-- Top Watch Demo Form -->
       <div id="topEmailSection" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-        <!-- Mailchimp embedded form: replace `action` with your own Mailchimp URL -->
-        <form
-          action="https://app.us5.list-manage.com/subscribe/post?u=f2ebf5b6d3307d2eb64af59c1&amp;id=091391f2ec&amp;f_id=00322bebf0"
-          method="post"
-          id="mc-form-top"
-          name="mc-embedded-subscribe-form"
-          class="validate space-y-4"
-          target="popupwindow"
-          onsubmit="return validateAndRedirect('top');"
-        >
+        <form id="mc-form-top" class="space-y-4">
           <input
             type="email"
             name="EMAIL"
@@ -45,13 +40,6 @@
             placeholder="Enter your email"
             required
             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <!-- Hidden “honeypot” field Mailchimp requires -->
-          <input
-            type="hidden"
-            name="b_f2ebf5b6d3307d2eb64af59c1_091391f2ec"
-            tabindex="-1"
-            value=""
           />
           <button
             type="submit"
@@ -159,15 +147,7 @@
 
       <!-- Bottom Watch Demo Form -->
       <div id="bottomEmailSection" class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
-        <form
-          action="https://app.us5.list-manage.com/subscribe/post?u=f2ebf5b6d3307d2eb64af59c1&amp;id=091391f2ec&amp;f_id=00322bebf0"
-          method="post"
-          id="mc-form-bottom"
-          name="mc-embedded-subscribe-form"
-          class="space-y-4"
-          target="popupwindow"
-          onsubmit="return validateAndRedirect('bottom');"
-        >
+        <form id="mc-form-bottom" class="space-y-4">
           <input
             type="email"
             name="EMAIL"
@@ -175,13 +155,6 @@
             placeholder="Enter your email"
             required
             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <!-- Hidden “honeypot” field -->
-          <input
-            type="hidden"
-            name="b_f2ebf5b6d3307d2eb64af59c1_091391f2ec"
-            tabindex="-1"
-            value=""
           />
           <button
             type="submit"
@@ -213,38 +186,70 @@
     </div>
   </footer>
 
-  <!-- JavaScript: Validate + Redirect Both Forms to demo.html -->
+  <!-- JavaScript: AJAX (JSONP) to Mailchimp + Redirect -->
   <script>
     /**
-     * Determines which form (top or bottom) called validateAndRedirect,
-     * then grabs the corresponding email field and error message.
+     * Helper: submit to Mailchimp via JSONP, then redirect to demo.html.
+     *
+     * @param {string} position - "top" or "bottom" to know which form's elements to read.
+     * @returns {boolean} - Always returns false to prevent default form submit.
      */
-    function validateAndRedirect(position) {
-      let emailField, errorMsg;
-      if (position === 'top') {
-        emailField = document.getElementById('mc-email-top');
-        errorMsg = document.getElementById('formError-top');
-      } else {
-        emailField = document.getElementById('mc-email-bottom');
-        errorMsg = document.getElementById('formError-bottom');
-      }
+    function submitAndRedirect(position) {
+      // Identify the email input + error <p> for this form
+      const emailInput = document.getElementById(position === 'top' ? 'mc-email-top' : 'mc-email-bottom');
+      const errorMsg = document.getElementById(position === 'top' ? 'formError-top' : 'formError-bottom');
+      const email = emailInput.value.trim();
 
-      const email = emailField.value.trim();
       if (!email) {
+        // Show error if no email
         errorMsg.textContent = 'Please enter a valid email.';
         errorMsg.classList.remove('hidden');
-        return false; // Prevent form submission if invalid
+        return false; // Stop any default form action
       }
 
-      // Let Mailchimp popup window open first (target="popupwindow")
-      // Then redirect the main window after a short delay:
-      setTimeout(() => {
-        const encoded = encodeURIComponent(email);
-        window.location.href = `demo.html?email=${encoded}`;
-      }, 500);
+      // Mailchimp JSONP endpoint parameters (Apex Leads audience)
+      const dataCenter = 'us5'; // from app.us5.list-manage.com
+      const mailchimpU = 'f2ebf5b6d3307d2eb64af59c1';
+      const mailchimpId = '091391f2ec';
+      const encodedEmail = encodeURIComponent(email);
 
-      return true; // Allow the form to submit into Mailchimp
+      // Build JSONP URL
+      const url = `https://${dataCenter}.list-manage.com/subscribe/post-json?u=${mailchimpU}&id=${mailchimpId}&EMAIL=${encodedEmail}&c=?`;
+
+      // Create <script> for JSONP
+      const script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
+
+      // JSONP callback
+      window['jsonpCallback'] = function(data) {
+        // Clean up the script tag & callback
+        document.body.removeChild(script);
+        delete window['jsonpCallback'];
+
+        if (data.result === 'success') {
+          // On success, redirect to demo.html with email in query
+          window.location.href = `demo.html?email=${encodedEmail}`;
+        } else {
+          // On failure, show Mailchimp's error message
+          errorMsg.textContent = data.msg || 'Subscription failed. Please try again.';
+          errorMsg.classList.remove('hidden');
+        }
+      };
+
+      return false; // Prevent the default form submission
     }
+
+    // Wire up both forms
+    document.getElementById('mc-form-top').addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitAndRedirect('top');
+    });
+    document.getElementById('mc-form-bottom').addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitAndRedirect('bottom');
+    });
   </script>
 </body>
 </html>
+
