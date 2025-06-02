@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS (optional) -->
+  <!-- Tailwind CSS CDN for styling -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Watch Demo</title>
 </head>
 <body class="bg-gray-50 text-gray-900">
+
   <!-- Header -->
   <header class="bg-white shadow">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
@@ -15,7 +16,7 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with Top Watch Demo Form -->
   <section class="bg-white">
     <div class="container mx-auto px-6 py-16 text-center">
       <h1 class="text-4xl font-bold mb-4">
@@ -25,29 +26,27 @@
         Enter your email to watch our quick 2-minute demo and discover how to capture hot leads instantly.
       </p>
 
-      <!-- MAILCHIMP EMBEDDED FORM (Apex Leads Audience) -->
-      <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-        <!-- 
-          Replace the `action` URL with your own Mailchimp URL:
-          action="https://app.us5.list-manage.com/subscribe/post?u=f2ebf5b6d3307d2eb64af59c1&id=091391f2ec"
-        -->
+      <!-- Top Watch Demo Form -->
+      <div id="topEmailSection" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <!-- Mailchimp embedded form: replace `action` with your own Mailchimp URL -->
         <form
           action="https://app.us5.list-manage.com/subscribe/post?u=f2ebf5b6d3307d2eb64af59c1&amp;id=091391f2ec&amp;f_id=00322bebf0"
           method="post"
-          id="mc-embedded-subscribe-form"
+          id="mc-form-top"
           name="mc-embedded-subscribe-form"
           class="validate space-y-4"
           target="popupwindow"
-          onsubmit="return validateAndRedirect();"
+          onsubmit="return validateAndRedirect('top');"
         >
           <input
             type="email"
             name="EMAIL"
-            id="mce-EMAIL"
+            id="mc-email-top"
             placeholder="Enter your email"
             required
             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          <!-- Hidden “honeypot” field Mailchimp requires -->
           <input
             type="hidden"
             name="b_f2ebf5b6d3307d2eb64af59c1_091391f2ec"
@@ -58,9 +57,9 @@
             type="submit"
             class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            Get Instant Access
+            Watch Demo
           </button>
-          <p id="formError" class="text-red-500 text-sm hidden">
+          <p id="formError-top" class="text-red-500 text-sm hidden">
             Subscription failed. Please try again.
           </p>
         </form>
@@ -68,10 +67,144 @@
     </div>
   </section>
 
-  <!-- Footer (optional) -->
+  <!-- “Works With Leading Brokerages” Section -->
+  <section class="bg-gray-100">
+    <div class="container mx-auto px-6 py-12 text-center">
+      <h2 class="text-2xl font-semibold mb-4">
+        Works Seamlessly with Leading Brokerages
+      </h2>
+      <p class="text-sm text-gray-600 mb-6">
+        Company names and logos are trademarks of their respective owners. Use of these logos does not imply
+        affiliation or endorsement by those brokerages.
+      </p>
+      <div class="flex justify-center space-x-8 mb-8">
+        <img
+          src="assets/keller-williams.svg"
+          alt="Keller Williams Realty"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
+        <img
+          src="assets/remax.svg"
+          alt="RE/MAX"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
+        <img
+          src="assets/coldwell-banker.svg"
+          alt="Coldwell Banker"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
+        <img
+          src="assets/century-21.svg"
+          alt="Century 21 Real Estate"
+          class="h-8 opacity-80 hover:opacity-100 transition"
+        />
+      </div>
+      <blockquote class="italic text-gray-700 max-w-2xl mx-auto">
+        “Agents at Keller Williams already saw a 35% boost in lead conversions using Apex’s chatbot.”<br />
+        <span class="font-semibold">
+          – John Smith, Keller Williams Team Lead
+        </span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ROI Stats Section -->
+  <section class="bg-white">
+    <div class="container mx-auto px-6 py-12">
+      <h2 class="text-2xl font-semibold text-center mb-8">
+        Real Results for Real Agents
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8 text-center mb-8">
+        <div>
+          <p class="text-5xl font-bold text-blue-600">41%</p>
+          <p class="mt-2">Average Revenue Increase</p>
+        </div>
+        <div>
+          <p class="text-5xl font-bold text-blue-600">30+</p>
+          <p class="mt-2">New Leads per Month</p>
+        </div>
+        <div>
+          <p class="text-5xl font-bold text-blue-600">24–48 hrs</p>
+          <p class="mt-2">From Demo to Live Deployment</p>
+        </div>
+      </div>
+
+      <!-- How It Works Bullets -->
+      <div class="max-w-2xl mx-auto mb-8">
+        <ul class="list-disc list-inside text-left text-gray-700 space-y-2">
+          <li>
+            <span class="font-semibold">Instant Lead Capture:</span>
+            Automatically qualify and route hot prospects without lifting a finger.
+          </li>
+          <li>
+            <span class="font-semibold">Zero Technical Setup:</span>
+            Our team handles all integration with Landbot & Airtable—no coding needed.
+          </li>
+          <li>
+            <span class="font-semibold">Live in 48 Hours:</span>
+            Dedicated CSM gets you up and running fast, so you start converting immediately.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secondary CTA Section with Bottom Watch Demo Form -->
+  <section class="bg-blue-600">
+    <div class="container mx-auto px-6 py-12 text-center text-white">
+      <h2 class="text-3xl font-bold mb-4">Ready to Watch the Demo?</h2>
+      <p class="mb-6">
+        Enter your email below to see how quickly Apex Estate Solutions can capture hot leads for you.
+      </p>
+
+      <!-- Bottom Watch Demo Form -->
+      <div id="bottomEmailSection" class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+        <form
+          action="https://app.us5.list-manage.com/subscribe/post?u=f2ebf5b6d3307d2eb64af59c1&amp;id=091391f2ec&amp;f_id=00322bebf0"
+          method="post"
+          id="mc-form-bottom"
+          name="mc-embedded-subscribe-form"
+          class="space-y-4"
+          target="popupwindow"
+          onsubmit="return validateAndRedirect('bottom');"
+        >
+          <input
+            type="email"
+            name="EMAIL"
+            id="mc-email-bottom"
+            placeholder="Enter your email"
+            required
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <!-- Hidden “honeypot” field -->
+          <input
+            type="hidden"
+            name="b_f2ebf5b6d3307d2eb64af59c1_091391f2ec"
+            tabindex="-1"
+            value=""
+          />
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            Watch Demo
+          </button>
+          <p id="formError-bottom" class="text-red-500 text-sm hidden">
+            Subscription failed. Please try again.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="bg-gray-800 mt-20">
     <div class="container mx-auto px-6 py-6 text-center text-gray-400">
-      <img src="assets/apex-logo.png" alt="Apex Estate Solutions" class="h-8 mx-auto mb-4 opacity-50" />
+      <img
+        src="assets/apex-logo.png"
+        alt="Apex Estate Solutions"
+        class="h-8 mx-auto mb-4 opacity-50"
+      />
       <div class="space-x-4 mb-2">
         <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
         <a href="terms.html" class="hover:text-white">Terms of Service</a>
@@ -80,33 +213,37 @@
     </div>
   </footer>
 
+  <!-- JavaScript: Validate + Redirect Both Forms to demo.html -->
   <script>
     /**
-     * 1) When the Mailchimp form is submitted, it opens a popup for Mailchimp’s “Thank You” page.
-     * 2) We grab the email address, then redirect the main window (not the popup) to demo.html.
-     * 3) If the popup fails, we show an error message.
+     * Determines which form (top or bottom) called validateAndRedirect,
+     * then grabs the corresponding email field and error message.
      */
-
-    function validateAndRedirect() {
-      // Get the email field
-      const emailField = document.getElementById('mce-EMAIL');
-      const email = emailField.value.trim();
-      if (!email) {
-        // Show a simple error if no email
-        document.getElementById('formError').textContent = 'Please enter a valid email.';
-        document.getElementById('formError').classList.remove('hidden');
-        return false;
+    function validateAndRedirect(position) {
+      let emailField, errorMsg;
+      if (position === 'top') {
+        emailField = document.getElementById('mc-email-top');
+        errorMsg = document.getElementById('formError-top');
+      } else {
+        emailField = document.getElementById('mc-email-bottom');
+        errorMsg = document.getElementById('formError-bottom');
       }
 
-      // Open the Mailchimp popup (the `target="popupwindow"` causes this to open in a small window)
-      // After a brief delay, redirect the main window to demo.html
+      const email = emailField.value.trim();
+      if (!email) {
+        errorMsg.textContent = 'Please enter a valid email.';
+        errorMsg.classList.remove('hidden');
+        return false; // Prevent form submission if invalid
+      }
+
+      // Let Mailchimp popup window open first (target="popupwindow")
+      // Then redirect the main window after a short delay:
       setTimeout(() => {
-        // Encode email so it’s safe in a URL
         const encoded = encodeURIComponent(email);
         window.location.href = `demo.html?email=${encoded}`;
-      }, 500); // 0.5 second delay so Mailchimp can process
+      }, 500);
 
-      return true; 
+      return true; // Allow the form to submit into Mailchimp
     }
   </script>
 </body>
