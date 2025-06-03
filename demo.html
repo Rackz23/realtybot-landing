@@ -3,14 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS (optional) -->
+  <!-- Tailwind CSS (optional for styling) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Demo</title>
   <style>
+    /* Center container for the video */
     .center-container {
       max-width: 720px;
       margin: 3rem auto;
       text-align: center;
+    }
+    /* Booking modal backdrop (hidden by default) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none; /* Will be set to flex via JS when video ends */
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+    /* Booking modal content */
+    .modal-content {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
     }
   </style>
 </head>
@@ -26,17 +46,29 @@
   <!-- Video Section -->
   <section class="center-container">
     <h1 class="text-3xl font-bold mb-6">Apex Estate Solutions Demo</h1>
-    <!-- YouTube iframe embed with autoplay=1 -->
-    <iframe
-      id="demoVideo"
-      width="100%"
-      height="405"
-      src="https://www.youtube.com/embed/prvWyZrPVkc?autoplay=1&rel=0&modestbranding=1"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
+    <!-- Replace static iframe with an empty div for the YouTube IFrame API -->
+    <div id="player"></div>
   </section>
+
+  <!-- Booking Modal (hidden until video ends) -->
+  <div id="bookingModal" class="modal-backdrop">
+    <div class="modal-content">
+      <!-- Close button -->
+      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4 text-xl">&times;</button>
+      <h3 class="text-xl font-bold mb-4">Book a Call</h3>
+      <!-- Inline Calendly embed: replace URL with your own Calendly link -->
+      <div
+        class="calendly-inline-widget"
+        data-url="https://calendly.com/your-calendly-username/demo-call"
+        style="min-width:320px;height:630px;"
+      ></div>
+      <script
+        type="text/javascript"
+        src="https://assets.calendly.com/assets/external/widget.js"
+        async
+      ></script>
+    </div>
+  </div>
 
   <!-- Footer (optional) -->
   <footer class="bg-gray-800 mt-20">
@@ -44,6 +76,50 @@
       &copy; 2025 Apex Estate Solutions. All rights reserved.
     </div>
   </footer>
+
+  <!-- 1) Load the YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+
+    // Called by the YouTube IFrame API once it’s loaded
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '360',
+        width: '640',
+        videoId: 'prvWyZrPVkc', // Your YouTube video ID
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          modestbranding: 1,
+          rel: 0
+        },
+        events: {
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+
+    // When the video ends (YT.PlayerState.ENDED === 0), show booking modal
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        showBookingModal();
+      }
+    }
+
+    // Show the Calendly booking modal
+    function showBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+
+    // Close the modal when the “×” button is clicked
+    document.getElementById('closeModal').addEventListener('click', function() {
+      const modal = document.getElementById('bookingModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+  </script>
 </body>
 </html>
-
