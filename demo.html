@@ -7,28 +7,37 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Apex Estate Solutions – Demo</title>
   <style>
-    /* Center container for the video */
-    .center-container {
-      max-width: 720px;
-      margin: 3rem auto;
-      text-align: center;
+    /* Responsive video container: 16:9 aspect ratio */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      /* 9/16 = 56.25% */
+      padding-top: 56.25%;
+    }
+    .video-wrapper iframe,
+    .video-wrapper #player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
     /* Booking modal backdrop (hidden by default) */
     .modal-backdrop {
       position: fixed;
       inset: 0;
       background-color: rgba(0, 0, 0, 0.5);
-      display: none; /* Will be set to flex via JS when video ends */
+      display: none; /* shown via JS when video ends */
       justify-content: center;
       align-items: center;
       z-index: 50;
     }
-    /* Booking modal content */
     .modal-content {
       background-color: white;
       border-radius: 0.5rem;
       padding: 1.5rem;
-      max-width: 90vw;
+      width: 90%;
+      max-width: 600px;
       max-height: 90vh;
       overflow-y: auto;
     }
@@ -44,17 +53,21 @@
   </header>
 
   <!-- Video Section -->
-  <section class="center-container">
-    <h1 class="text-3xl font-bold mb-6">Apex Estate Solutions Demo</h1>
-    <!-- Placeholder div for YouTube IFrame API player -->
-    <div id="player"></div>
+  <section class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-6">Apex Estate Solutions Demo</h1>
+
+    <!-- Responsive video wrapper -->
+    <div class="video-wrapper mx-auto">
+      <!-- Placeholder div for YouTube IFrame API player -->
+      <div id="player"></div>
+    </div>
   </section>
 
   <!-- Booking Modal (hidden until video ends) -->
-  <div id="bookingModal" class="modal-backdrop">
+  <div id="bookingModal" class="modal-backdrop flex">
     <div class="modal-content">
       <!-- Close button -->
-      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4 text-xl">&times;</button>
+      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4 text-lg">&times;</button>
       <h3 class="text-xl font-bold mb-4">Book a Call</h3>
       <!-- Inline Calendly embed with your provided link -->
       <div
@@ -71,8 +84,8 @@
   </div>
 
   <!-- Footer (optional) -->
-  <footer class="bg-gray-800 mt-20">
-    <div class="container mx-auto px-6 py-6 text-center text-gray-400">
+  <footer class="bg-gray-800 mt-12">
+    <div class="container mx-auto px-4 py-6 text-center text-gray-400">
       &copy; 2025 Apex Estate Solutions. All rights reserved.
     </div>
   </footer>
@@ -85,8 +98,6 @@
     // Called by the YouTube IFrame API once it’s loaded
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('player', {
-        height: '360',
-        width: '640',
         videoId: 'prvWyZrPVkc', // Your YouTube video ID
         playerVars: {
           autoplay: 1,
@@ -100,7 +111,7 @@
       });
     }
 
-    // When the video ends (YT.PlayerState.ENDED === 0), show booking modal
+    // When the video ends, show booking modal
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.ENDED) {
         showBookingModal();
