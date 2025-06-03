@@ -15,7 +15,7 @@
     .video-wrapper {
       position: relative;
       width: 100%; 
-      padding-top: 56.25%; /* 16:9 aspect ratio */ 
+      padding-top: 56.25%; /* 16:9 aspect ratio :contentReference[oaicite:0]{index=0} */
     }
     .video-wrapper #player {
       position: absolute;
@@ -30,7 +30,7 @@
       position: fixed;
       inset: 0;
       background-color: rgba(0, 0, 0, 0.5);
-      display: none; /* Shown via JS when video ends */
+      display: none; /* Shown via JS when video ends  */
       justify-content: center;
       align-items: center;
       z-index: 50;
@@ -67,7 +67,7 @@
   </section>
 
   <!-- Booking Modal (hidden until video ends) -->
-  <div id="bookingModal" class="modal-backdrop flex">
+  <div id="bookingModal" class="modal-backdrop">
     <div class="modal-content">
       <!-- Close button -->
       <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4 text-xl">&times;</button>
@@ -116,14 +116,14 @@
 
     // Show booking modal when video ends
     function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.ENDED) {  /* 0 = video ended */ 
+      if (event.data === YT.PlayerState.ENDED) {  /* 0 = video ended :contentReference[oaicite:2]{index=2} */
         showBookingModal();
       }
     }
 
     function showBookingModal() {
       const modal = document.getElementById('bookingModal');
-      modal.style.display = 'flex';
+      modal.style.display = 'flex'; /* display set here only after video ends  */
       document.body.style.overflow = 'hidden'; 
     }
 
