@@ -35,6 +35,11 @@
       padding: 1.5rem; max-width: 600px; width: 90%;
       max-height: 90vh; overflow-y: auto;
     }
+    .countdown {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-cta);
+    }
   </style>
   <!-- Facebook Pixel -->
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1828085664422126');fbq('track','PageView');</script>
@@ -59,6 +64,11 @@
       <p class="text-lg mb-6 max-w-xl mx-auto">
         Register now to unlock our 2-minute demo and see hot-lead capture in action.
       </p>
+      <!-- Countdown Timer -->
+      <div id="countdown" class="countdown mb-6">
+        Demo Starts In: 02:00:00
+      </div>
+      <!-- Email Form -->
       <div id="formSection" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg">
         <form id="leadForm" class="space-y-4">
           <input type="email" id="emailInput" placeholder="you@youremail.com" required
@@ -129,7 +139,7 @@
            style="min-width:320px;height:630px;"></div>
     </div>
   </div>
-  
+
   <!-- Footer -->
   <footer class="bg-gray-800 text-gray-400 py-6">
     <div class="container mx-auto text-center px-6 space-y-2">
@@ -144,8 +154,18 @@
 
   <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
-  <!-- Mailchimp JSONP & Unlock Logic -->
+  <!-- Mailchimp JSONP & Logic -->
   <script>
+    // Countdown timer: start at 2 hours
+    let remaining = 2 * 3600;
+    const cdEl = document.getElementById('countdown');
+    setInterval(() => {
+      const h = Math.floor(remaining/3600), m = Math.floor((remaining%3600)/60), s = remaining%60;
+      cdEl.textContent = `Demo Starts In: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      remaining = remaining > 0 ? remaining-1 : 0;
+    }, 1000);
+
+    // Handle form submit
     document.getElementById('leadForm').addEventListener('submit', function(e){
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
@@ -153,14 +173,12 @@
         document.getElementById('formError').classList.remove('hidden');
         return;
       }
-      // JSONP callback
       const dc='us5', u='f2ebf5b6d3307d2eb64af59c1', id='091391f2ec';
       const cb='cb'+Date.now();
       window[cb] = function(data){
         document.body.removeChild(script);
         delete window[cb];
         if(data.result==='success'){
-          // Hide form, show video
           document.getElementById('formSection').classList.add('hidden');
           document.getElementById('videoSection').classList.remove('hidden');
         } else {
@@ -173,25 +191,24 @@
       document.body.appendChild(script);
     });
 
-    // YouTube player setup & end event triggers modal
+    // YouTube setup & modal on end
     let player;
     function onYouTubeIframeAPIReady(){
       player = new YT.Player('player', {
-        videoId: 'YOUR_VIDEO_ID', 
+        videoId: 'YOUR_VIDEO_ID',
         playerVars:{autoplay:1,controls:1,modestbranding:1,rel:0},
-        events:{onStateChange: onPlayerStateChange}
+        events:{ onStateChange: e => {
+          if(e.data === YT.PlayerState.ENDED){
+            const m = document.getElementById('bookingModal');
+            m.style.display='flex';
+            document.body.style.overflow='hidden';
+          }
+        }}
       });
     }
-    function onPlayerStateChange(e){
-      if(e.data === YT.PlayerState.ENDED){
-        const modal = document.getElementById('bookingModal');
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    document.getElementById('closeModal').onclick = ()=>{
-      document.getElementById('bookingModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
+    document.getElementById('closeModal').onclick = () => {
+      document.getElementById('bookingModal').style.display='none';
+      document.body.style.overflow='auto';
     };
   </script>
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
