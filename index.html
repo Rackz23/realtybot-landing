@@ -66,21 +66,10 @@
         Register now to unlock our 2-minute demo and see hot-lead capture in action.
       </p>
 
-     // Countdown timer: start at 2 minutes (120 seconds)
-let rem = 2 * 60;
-const timeEl = document.getElementById('time');
-
-const timerInterval = setInterval(() => {
-  const m = Math.floor(rem / 60);
-  const s = rem % 60;
-  timeEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-
-  if (rem > 0) {
-    rem--;
-  } else {
-    clearInterval(timerInterval);
-  }
-}, 1000);
+<!-- Countdown Timer -->
+<div id="countdown" class="countdown mb-6">
+  Demo Starts In: <span id="time">02:00</span>
+</div>
 
 
       <!-- Top Email Form -->
