@@ -1,137 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS for general styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Apex Estate Solutions – Demo</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    /* 
-     1) Create a fluid, 16:9 aspect-ratio container for the video. 
-     2) The padding-top:56.25% (9/16*100) enforces the ratio. 
-     3) The inner #player is absolutely positioned to fill it entirely. 
-     */ 
     .video-wrapper {
       position: relative;
-      width: 100%; 
-      padding-top: 56.25%; /* 16:9 aspect ratio :contentReference[oaicite:0]{index=0} */
+      width: 100%; padding-top: 56.25%; /* 16:9 */
     }
     .video-wrapper #player {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: absolute; top:0; left:0; width:100%; height:100%;
     }
-
-    /* Booking modal backdrop (hidden by default) */
     .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: none; /* Shown via JS when video ends  */
-      justify-content: center;
-      align-items: center;
-      z-index: 50;
+      position: fixed; inset:0; background: rgba(0,0,0,0.5);
+      display: none; justify-content: center; align-items: center; z-index:50;
     }
-    /* Booking modal content */
     .modal-content {
-      background-color: white;
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
+      background: #fff; border-radius: 0.5rem; padding:1.5rem;
+      width:90%; max-width:600px; max-height:90vh; overflow-y:auto;
     }
   </style>
 </head>
+
 <body class="bg-gray-50 text-gray-900">
 
   <!-- Header -->
   <header class="bg-white shadow">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
-      <img src="assets/apex-logo.png" alt="Apex Estate Solutions" class="h-10" />
+      <img src="assets/apex-logo.png" alt="Apex Estate Solutions" class="h-10"/>
     </div>
   </header>
 
-  <!-- Video Section -->
+  <!-- Demo Video -->
   <section class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-center mb-6">Apex Estate Solutions Demo</h1>
-    <!-- Responsive video wrapper (16:9) -->
-    <div class="video-wrapper mx-auto">
-      <!-- JS will instantiate the YouTube player here -->
+    <div class="video-wrapper mx-auto max-w-4xl">
       <div id="player"></div>
     </div>
   </section>
 
-  <!-- Booking Modal (hidden until video ends) -->
+  <!-- Booking Modal -->
   <div id="bookingModal" class="modal-backdrop">
     <div class="modal-content">
-      <!-- Close button -->
-      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4 text-xl">&times;</button>
+      <button id="closeModal" class="float-right text-gray-500 text-xl hover:text-gray-800">&times;</button>
       <h3 class="text-xl font-bold mb-4">Book a Call</h3>
-      <!-- Your Calendly embed -->
-      <div
-        class="calendly-inline-widget"
-        data-url="https://calendly.com/apexestatesolutions-support/30min?back=1&month=2025-06"
-        style="min-width:320px;height:630px;"
-      ></div>
-      <script
-        type="text/javascript"
-        src="https://assets.calendly.com/assets/external/widget.js"
-        async
-      ></script>
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/apexestatesolutions-support/30min?back=1&month=2025-06"
+           style="min-width:320px;height:630px;"></div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 mt-12">
-    <div class="container mx-auto px-4 py-6 text-center text-gray-400">
+  <footer class="bg-gray-800 mt-12 text-gray-400 py-6">
+    <div class="container mx-auto text-center px-4">
       &copy; 2025 Apex Estate Solutions. All rights reserved.
     </div>
   </footer>
 
-  <!-- 1) Load YouTube IFrame API for JS-driven player -->
+  <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- Calendly widget -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
   <script>
     let player;
-
-    // Called automatically by the YouTube API script
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('player', {
-        videoId: 'prvWyZrPVkc', // Your YouTube video ID
-        playerVars: {
-          autoplay: 1,
-          controls: 1,
-          modestbranding: 1,
-          rel: 0
-        },
-        events: {
-          onStateChange: onPlayerStateChange
-        }
+        videoId: 'N7qDOtGuUIw',  // <— your actual video ID
+        playerVars: { autoplay:1, controls:1, modestbranding:1, rel:0 },
+        events: { onStateChange: e => {
+          if (e.data === YT.PlayerState.ENDED) {
+            document.getElementById('bookingModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+          }
+        }}
       });
     }
-
-    // Show booking modal when video ends
-    function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.ENDED) {  /* 0 = video ended :contentReference[oaicite:2]{index=2} */
-        showBookingModal();
-      }
-    }
-
-    function showBookingModal() {
-      const modal = document.getElementById('bookingModal');
-      modal.style.display = 'flex'; /* display set here only after video ends  */
-      document.body.style.overflow = 'hidden'; 
-    }
-
-    document.getElementById('closeModal').addEventListener('click', function() {
-      const modal = document.getElementById('bookingModal');
-      modal.style.display = 'none';
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('bookingModal').style.display = 'none';
       document.body.style.overflow = 'auto';
     });
   </script>
 </body>
 </html>
+
