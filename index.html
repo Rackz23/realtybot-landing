@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Real Estate Automation & Marketing Made Easy</title>
-
   <style>
     :root {
       --color-primary: #1f2937;
@@ -15,16 +14,32 @@
       --color-cta: #ff6459;
       --color-bg: #f9fafb;
     }
-    .hidden { display: none; }
-    /* Countdown styling */
-    .countdown { font-size: 1.25rem; font-weight: 600; color: var(--color-cta); }
+    .hidden { display: none !important; }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+    }
+    .video-wrapper #player {
+      position: absolute; top:0; left:0;
+      width:100%; height:100%;
+    }
+    .modal-backdrop {
+      position: fixed; inset:0;
+      background: rgba(0,0,0,0.6);
+      display: none; justify-content: center; align-items: center;
+      z-index: 50;
+    }
+    .modal-content {
+      background: #fff; border-radius: .5rem;
+      padding: 1.5rem; max-width: 600px; width: 90%;
+      max-height: 90vh; overflow-y: auto;
+    }
   </style>
-
   <!-- Facebook Pixel -->
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1828085664422126');fbq('track','PageView');</script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1828085664422126&ev=PageView&noscript=1"/></noscript>
 </head>
-
 <body class="bg-[var(--color-bg)] text-[var(--color-secondary)]">
 
   <!-- Header -->
@@ -34,23 +49,17 @@
     </div>
   </header>
 
-  <!-- Hero / Webinar Section -->
+  <!-- Hero + Form -->
   <section class="bg-white">
     <div class="container mx-auto text-center px-6 py-16">
-      <!-- Headline -->
       <h1 class="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-4">
         Real Estate <span class="text-[var(--color-accent)]">Automation</span> & 
         <span class="text-[var(--color-cta)]">Marketing</span> Made Easy
       </h1>
-      <!-- Subheadline -->
       <p class="text-lg mb-6 max-w-xl mx-auto">
-        Join our exclusive, free demo and learn how to capture hot leads on autopilot—no coding required.
+        Register now to unlock our 2-minute demo and see hot-lead capture in action.
       </p>
-      <!-- Countdown -->
-      <div class="countdown mb-6" id="countdown">Demo Starts In: 02:15:00</div>
-
-      <!-- Email Form -->
-      <div class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg">
+      <div id="formSection" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg">
         <form id="leadForm" class="space-y-4">
           <input type="email" id="emailInput" placeholder="you@youremail.com" required
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"/>
@@ -64,23 +73,16 @@
     </div>
   </section>
 
-  <!-- Broker Logos / Trust Section -->
+  <!-- Broker Logos + Testimonial -->
   <section class="bg-[var(--color-bg)] py-12">
-    <div class="container mx-auto text-center px-6">
-      <p class="uppercase text-sm tracking-widest text-[var(--color-secondary)] mb-4">Trusted by top brokerages</p>
+    <div class="container mx-auto text-center px-6 space-y-6">
       <div class="flex justify-center space-x-8">
         <img src="assets/keller-williams.svg" alt="Keller Williams" class="h-8 opacity-70 hover:opacity-100"/>
         <img src="assets/remax.svg"            alt="RE/MAX"          class="h-8 opacity-70 hover:opacity-100"/>
         <img src="assets/coldwell-banker.svg" alt="Coldwell Banker" class="h-8 opacity-70 hover:opacity-100"/>
         <img src="assets/century-21.svg"      alt="Century 21"      class="h-8 opacity-70 hover:opacity-100"/>
       </div>
-    </div>
-  </section>
-
-  <!-- Testimonial -->
-  <section class="bg-white py-8">
-    <div class="container mx-auto text-center px-6">
-      <blockquote class="italic text-[var(--color-primary)] max-w-2xl mx-auto mb-4">
+      <blockquote class="italic text-[var(--color-primary)] max-w-2xl mx-auto">
         “We saw a 35% uplift in qualified leads in just 30 days—Apex’s bot is a game changer.”
       </blockquote>
       <p class="font-semibold">— John Smith, Keller Williams Team Lead</p>
@@ -94,11 +96,11 @@
       <div class="grid md:grid-cols-3 gap-8 text-center">
         <div>
           <p class="text-5xl font-bold text-[var(--color-accent)]">41%</p>
-          <p class="mt-2">Average Revenue Increase</p>
+          <p class="mt-2">Avg. Revenue Increase</p>
         </div>
         <div>
           <p class="text-5xl font-bold text-[var(--color-accent)]">30+</p>
-          <p class="mt-2">New Leads per Month</p>
+          <p class="mt-2">New Leads / Month</p>
         </div>
         <div>
           <p class="text-5xl font-bold text-[var(--color-accent)]">24–48h</p>
@@ -108,18 +110,26 @@
     </div>
   </section>
 
-  <!-- Video Demo (hidden until form submit) -->
+  <!-- Video + Booking Modal -->
   <section id="videoSection" class="hidden bg-white py-12">
-    <div class="container mx-auto text-center px-6">
-      <h3 class="text-2xl font-semibold mb-6 text-[var(--color-primary)]">Your Demo Is Ready</h3>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1" 
-                allow="autoplay; encrypted-media" allowfullscreen 
-                class="w-full h-full rounded-xl shadow-lg"></iframe>
+    <div class="container mx-auto px-6">
+      <h3 class="text-2xl font-semibold text-center mb-6 text-[var(--color-primary)]">Your Demo Is Ready</h3>
+      <div class="video-wrapper mx-auto max-w-3xl">
+        <div id="player"></div>
       </div>
     </div>
   </section>
 
+  <div id="bookingModal" class="modal-backdrop">
+    <div class="modal-content">
+      <button id="closeModal" class="float-right text-gray-500 hover:text-gray-800 mb-4 text-xl">&times;</button>
+      <h3 class="text-xl font-bold mb-4">Book a Call</h3>
+      <div class="calendly-inline-widget" 
+           data-url="https://calendly.com/apexestatesolutions-support/30min?back=1&month=2025-06"
+           style="min-width:320px;height:630px;"></div>
+    </div>
+  </div>
+  
   <!-- Footer -->
   <footer class="bg-gray-800 text-gray-400 py-6">
     <div class="container mx-auto text-center px-6 space-y-2">
@@ -132,25 +142,27 @@
     </div>
   </footer>
 
-  <!-- Mailchimp JSONP + Demo Toggle -->
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- Mailchimp JSONP & Unlock Logic -->
   <script>
-    document.getElementById('leadForm').addEventListener('submit', function(e) {
+    document.getElementById('leadForm').addEventListener('submit', function(e){
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
-      if (!email) {
+      if(!email){
         document.getElementById('formError').classList.remove('hidden');
         return;
       }
-      // JSONP Mailchimp
+      // JSONP callback
       const dc='us5', u='f2ebf5b6d3307d2eb64af59c1', id='091391f2ec';
-      const cb='jsonpCb_'+Date.now();
+      const cb='cb'+Date.now();
       window[cb] = function(data){
         document.body.removeChild(script);
         delete window[cb];
         if(data.result==='success'){
-          // hide form, show video
+          // Hide form, show video
+          document.getElementById('formSection').classList.add('hidden');
           document.getElementById('videoSection').classList.remove('hidden');
-          document.querySelector('section.bg-white').scrollIntoView({behavior:'smooth'});
         } else {
           document.getElementById('formError').textContent = data.msg;
           document.getElementById('formError').classList.remove('hidden');
@@ -161,13 +173,27 @@
       document.body.appendChild(script);
     });
 
-    // Simple countdown (2h from page load)
-    let remaining = 2*3600; const cd = document.getElementById('countdown');
-    setInterval(()=>{ 
-      const h=Math.floor(remaining/3600), m=Math.floor((remaining%3600)/60), s=remaining%60;
-      cd.textContent = `Demo Starts In: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-      remaining = remaining>0? remaining-1 : 0;
-    },1000);
+    // YouTube player setup & end event triggers modal
+    let player;
+    function onYouTubeIframeAPIReady(){
+      player = new YT.Player('player', {
+        videoId: 'YOUR_VIDEO_ID', 
+        playerVars:{autoplay:1,controls:1,modestbranding:1,rel:0},
+        events:{onStateChange: onPlayerStateChange}
+      });
+    }
+    function onPlayerStateChange(e){
+      if(e.data === YT.PlayerState.ENDED){
+        const modal = document.getElementById('bookingModal');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    document.getElementById('closeModal').onclick = ()=>{
+      document.getElementById('bookingModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    };
   </script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
