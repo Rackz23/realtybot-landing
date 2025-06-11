@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Memberstack Initialization -->
+  <script type="module">
+    import memberstackDOM from '@memberstack/dom';
+    const memberstack = memberstackDOM.init({
+      publicKey: "pk_sb_bb69b2b937b1f73647d9",
+    });
+  </script>
+  <title>Dashboard – RealtyBot DIY</title>
+</head>
+<body class="bg-bg text-primary font-sans leading-relaxed">
+
+  <!-- Responsive Header -->
+  <header class="bg-white shadow-md fixed top-0 w-full z-50">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+      <a href="/" class="text-2xl font-bold text-primary">RealtyBot DIY</a>
+      <button id="menu-btn" class="md:hidden focus:outline-none text-secondary" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <nav class="hidden md:flex space-x-6 items-center">
+        <a href="/login.html" class="ml-4 bg-cta hover:bg-cta-hover text-white font-semibold py-2 px-4 rounded-full">Logout</a>
+      </nav>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <ul class="flex flex-col p-4 space-y-2">
+        <li><a href="/login.html" class="block text-secondary">Logout</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Guard: Redirect if not logged in -->
+  <script>
+    memberstack.onReady.then(ms => {
+      if (!ms.member) window.location.href = '/login.html';
+    });
+  </script>
+
+  <!-- Spacer for fixed header -->
+  <div class="h-16"></div>
+
+  <!-- Dashboard Content -->
+  <main class="container mx-auto p-6 space-y-8">
+    <h1 class="text-3xl font-bold">Your Dashboard</h1>
+
+    <!-- Landbot Chat Widget -->
+    <div class="bg-white rounded-lg shadow p-4">
+      <script SameSite="None; Secure" type="module" src="https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs"></script>
+      <div id="myLandbot" style="width: 100%; height: 500px;"></div>
+      <script type="module">
+        var myLandbot = new Landbot.Container({
+          container: '#myLandbot',
+          configUrl: 'https://storage.googleapis.com/landbot.site/v3/H-2961275-J80BNAR28BYS8LHD/index.json',
+        });
+      </script>
+    </div>
+
+    <!-- Leads Table Embed -->
+    <div class="bg-white rounded-lg shadow p-4">
+      <iframe class="airtable-embed w-full" src="https://airtable.com/embed/appyMpGn3Ym7LMbxX/shrURTdyP1TOeZKW9?viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+    </div>
+  </main>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+
+</body>
+</html>
