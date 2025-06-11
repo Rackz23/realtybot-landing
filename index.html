@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS CDN -->
+  <!-- Lucky Orange Tracking -->
   <script async defer src="https://tools.luckyorange.com/core/lo.js?site-id=8ab00e61"></script>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Memberstack Initialization -->
+  <script type="module">
+    import memberstackDOM from '@memberstack/dom';
+    const memberstack = memberstackDOM.init({
+      publicKey: "pk_sb_bb69b2b937b1f73647d9",
+    });
+  </script>
+
   <style>
     /* ======================================================
        High-Conversion Color Variables
