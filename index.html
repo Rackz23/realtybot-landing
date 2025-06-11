@@ -42,36 +42,58 @@
     .bg-dark          { background-color: var(--color-dark); }
     .text-light       { color: var(--color-light-text); }
   </style>
+
   <title>RealtyBot DIY – 24/7 Chatbot for Realtors</title>
 </head>
 <body class="bg-bg text-primary font-sans leading-relaxed">
 
   <!-- ======================================================
-     1. NAVBAR (Sticky top, high-contrast)
+       1. NAVBAR (Responsive Sticky Header)
   ====================================================== -->
-  <header class="bg-light py-4 shadow-md fixed top-0 w-full z-50">
-    <div class="max-w-6xl mx-auto flex items-center justify-between px-4">
-      <!-- Logo / Brand -->
+  <header class="bg-white shadow-md fixed top-0 w-full z-50">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+      <!-- Logo -->
       <a href="#" class="text-2xl font-bold text-primary">RealtyBot DIY</a>
 
-      <!-- Nav Links (hidden on mobile) -->
-      <nav class="hidden md:flex space-x-6">
-        <a href="#features" class="text-secondary hover:text-primary transition">Features</a>
-        <a href="#integration" class="text-secondary hover:text-primary transition">Integrations</a>
-        <a href="#pricing" class="text-secondary hover:text-primary transition">Pricing</a>
-        <a href="#faq" class="text-secondary hover:text-primary transition">FAQ</a>
-        <a href="#contact" class="text-accent font-semibold">Contact</a>
-      </nav>
+      <!-- Hamburger (mobile only) -->
+      <button id="menu-btn" class="md:hidden focus:outline-none text-secondary" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
-      <!-- Primary CTA -->
-      <a
-        href="#pricing"
-        class="bg-cta hover:bg-cta-hover text-light px-5 py-2 rounded-lg font-semibold transition"
-      >
-        Buy Now
-      </a>
+      <!-- Desktop nav (hidden on mobile) -->
+      <nav class="hidden md:flex space-x-6 items-center">
+        <a href="#features"     class="text-secondary hover:text-primary transition">Features</a>
+        <a href="#integration"  class="text-secondary hover:text-primary transition">Integrations</a>
+        <a href="#pricing"      class="text-secondary hover:text-primary transition">Pricing</a>
+        <a href="#faq"          class="text-secondary hover:text-primary transition">FAQ</a>
+        <a href="#contact"      class="text-accent font-semibold transition">Contact</a>
+        <a href="#pricing"      class="ml-4 bg-cta hover:bg-cta-hover text-light px-5 py-2 rounded-lg font-semibold transition">Buy Now</a>
+      </nav>
+    </div>
+
+    <!-- Mobile menu (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <ul class="flex flex-col p-4 space-y-2">
+        <li><a href="#features"    class="block text-secondary">Features</a></li>
+        <li><a href="#integration" class="block text-secondary">Integrations</a></li>
+        <li><a href="#pricing"     class="block text-secondary">Pricing</a></li>
+        <li><a href="#faq"         class="block text-secondary">FAQ</a></li>
+        <li><a href="#contact"     class="block text-accent font-semibold">Contact</a></li>
+        <li><a href="#pricing"     class="block mt-2 bg-cta hover:bg-cta-hover text-light text-center font-semibold py-2 rounded-lg">Buy Now</a></li>
+      </ul>
     </div>
   </header>
+
+  <!-- Toggle script for mobile menu -->
+  <script>
+    const btn  = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+
   <!-- Spacer for fixed header -->
   <div class="h-16"></div>
 
