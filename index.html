@@ -309,96 +309,52 @@
 
  
   <!-- ======================================================
-     6. DEMO VIDEO + EMAIL CAPTURE (High-Impact)
-  ====================================================== -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   6. DEMO VIDEO (High-Impact)
+====================================================== -->
+<section id="demo" class="py-16 bg-bg">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+      Watch Our Quick 2-Minute Demo
+    </h2>
+    <div id="video-container" class="relative h-0 pb-[56.25%] mb-4">
+      <!-- Video iframe initially hidden until play -->
+      <iframe
+        id="demo-iframe"
+        data-src="https://www.youtube.com/embed/N7qDOtGuUIw"
+        src=""
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+      ></iframe>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      --color-bg: #f3f4f6;
-      --color-primary: #111827;
-      --color-secondary: #4b5563;
-      --color-accent: #2563eb;
-      --color-cta: #10b981;
-      --color-cta-hover: #059669;
-      --color-dark: #1f2937;
-      --color-light-text: #f9fafb;
-    }
-    .bg-bg            { background-color: var(--color-bg); }
-    .text-primary     { color: var(--color-primary); }
-    .text-secondary   { color: var(--color-secondary); }
-    .text-accent      { color: var(--color-accent); }
-    .bg-cta           { background-color: var(--color-cta); }
-    .hover\:bg-cta-hover:hover { background-color: var(--color-cta-hover); }
-    .border-accent    { border-color: var(--color-accent); }
-    .bg-dark          { background-color: var(--color-dark); }
-    .text-light       { color: var(--color-light-text); }
-  </style>
-  <title>RealtyBot DIY – 24/7 Chatbot for Realtors</title>
-</head>
-<body class="bg-bg text-primary font-sans leading-relaxed">
-
-  <!-- Header -->
-  <header class="bg-light py-4 shadow-md fixed top-0 w-full z-50">
-    <!-- Navbar content unchanged -->
-  </header>
-  <div class="h-16"></div>
-
-  <!-- Demo Section with Email Gate -->
-  <section id="demo" class="py-16 bg-bg">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">Watch Our Quick 2-Minute Demo</h2>
-      <p class="text-secondary mb-8">Enter your email below to unlock and play the demo.</p>
-      <div id="video-container" class="relative h-0 pb-[56.25%] mb-4">
-        <!-- Hidden iframe until email entry -->
-        <iframe
-          id="demo-iframe"
-          data-src="https://www.youtube.com/embed/N7qDOtGuUIw"
-          src=""
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-        ></iframe>
-        <!-- Overlay with form -->
-        <div id="overlay" class="absolute inset-0 bg-white bg-opacity-90 flex flex-col items-center justify-center p-6 rounded-lg shadow-lg">
-          <form id="demo-form" class="w-full max-w-md flex flex-col items-center">
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@youremail.com"
-              class="w-full px-4 py-3 border-2 border-accent rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-accent"
-            />
-            <button type="submit" class="w-full bg-cta hover:bg-cta-hover text-light font-semibold px-6 py-3 rounded-lg transition">
-              Register & Watch Demo
-            </button>
-          </form>
-          <p class="text-sm text-secondary mt-2">We respect your privacy—your email will never be sold or shared.</p>
-        </div>
+      <!-- Overlay with play button -->
+      <div
+        id="overlay"
+        class="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center p-6 rounded-lg shadow-lg"
+      >
+        <button
+          id="watch-btn"
+          class="bg-cta hover:bg-cta-hover text-light font-semibold px-8 py-4 rounded-full transition"
+        >
+          ▶️ Watch Demo
+        </button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Remaining sections unchanged -->
+<script>
+  const watchBtn = document.getElementById('watch-btn');
+  const overlay  = document.getElementById('overlay');
+  const iframe   = document.getElementById('demo-iframe');
 
-  <script>
-    // Enable video playback after email submission
-    document.getElementById('demo-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var iframe = document.getElementById('demo-iframe');
-      iframe.src = iframe.dataset.src + '?autoplay=1';
-      document.getElementById('overlay').style.display = 'none';
-    });
-  </script>
-</body>
-</html>
+  watchBtn.addEventListener('click', () => {
+    iframe.src = iframe.dataset.src + '?autoplay=1';
+    overlay.style.display = 'none';
+  });
+</script>
+
 
   <!-- ======================================================
      7. PLATFORM-SPECIFIC INTEGRATION VIDEOS
