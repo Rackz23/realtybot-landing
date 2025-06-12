@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Lucky Orange Tracking -->
   <script async defer src="https://tools.luckyorange.com/core/lo.js?site-id=8ab00e61"></script>
   <!-- Tailwind CSS CDN -->
@@ -12,7 +13,7 @@
   <script type="module">
     import memberstackDOM from '@memberstack/dom';
     const memberstack = memberstackDOM.init({
-      publicKey: "pk_sb_bb69b2b937b1f73647d9",
+      publicKey: "pk_sb_bb69b2b937b1f73647d9"
     });
   </script>
 
@@ -21,17 +22,15 @@
        High-Conversion Color Variables
     ====================================================== */
     :root {
-      --color-bg: #f3f4f6;          /* light gray background */
-      --color-primary: #111827;     /* deep navy for text/headers */
-      --color-secondary: #4b5563;   /* slate-gray for subtext */
-      --color-accent: #2563eb;      /* bright blue accent */
-      --color-cta: #10b981;         /* vivid green for all CTAs */
-      --color-cta-hover: #059669;   /* darker green on hover */
-      --color-dark: #1f2937;        /* almost black for footer background */
-      --color-light-text: #f9fafb;  /* for text on dark bg */
+      --color-bg: #f3f4f6;
+      --color-primary: #111827;
+      --color-secondary: #4b5563;
+      --color-accent: #2563eb;
+      --color-cta: #10b981;
+      --color-cta-hover: #059669;
+      --color-dark: #1f2937;
+      --color-light-text: #f9fafb;
     }
-
-    /* Utility Classes for Our Variables */
     .bg-bg            { background-color: var(--color-bg); }
     .text-primary     { color: var(--color-primary); }
     .text-secondary   { color: var(--color-secondary); }
@@ -44,7 +43,7 @@
   </style>
 
   <title>Apex Estate Solutions – AI Chat & Lead Management</title>
-
+  <link rel="icon" href="/assets/apex-logo.png" type="image/png" />
 </head>
 <body class="bg-bg text-primary font-sans leading-relaxed">
 
@@ -54,7 +53,13 @@
   <header class="bg-white shadow-md fixed top-0 w-full z-50">
     <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="#" class="text-2xl font-bold text-primary">RealtyBot DIY</a>
+      <a href="/" class="flex items-center">
+        <img
+          src="/assets/apex-logo.png"
+          alt="Apex Estate Solutions"
+          class="h-10 w-auto"
+        />
+      </a>
 
       <!-- Hamburger (mobile only) -->
       <button id="menu-btn" class="md:hidden focus:outline-none text-secondary" aria-label="Toggle menu">
